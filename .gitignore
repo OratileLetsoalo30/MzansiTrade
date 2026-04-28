@@ -1,0 +1,17 @@
+# Mac system files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# Node modules (if used)
+node_modules/
+
+# IMPORTANT: hide database connection file
+config/db.php
