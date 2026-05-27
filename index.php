@@ -1,5 +1,5 @@
 <?php
-// index.php — MzansiTrade Homepage
+// .php — MzansiTrade Homepage
 session_start();
 
 $page_title = 'Buy & Sell Locally in Cape Town';

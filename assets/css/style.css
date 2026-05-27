@@ -112,3 +112,32 @@ body{
         transform:translateY(-10px);
     }
 }
+/* ABOUT PAGE */
+.about {
+    padding: 40px;
+    text-align: center;
+    background: #fff;
+}
+
+
+.about p {
+    max-width: 700px;
+    margin: 10px auto;
+    line-height: 1.6;
+}
+
+.about-boxes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.box {
+    background: #fff3e6;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}

@@ -8,8 +8,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Redirect after 4 seconds -->
-    <meta http-equiv="refresh" content="4;url=index.php">
+    <!-- Redirect after 5 seconds -->
+    <meta http-equiv="refresh" content="5;url=index.php">
 </head>
 
 <body class="splash-body">
