@@ -126,7 +126,7 @@ header {
     object-fit: contain; /* Prevents raw imagery distortion */
 }
 
-/* Takealot Specification Typography Layout */
+/* Tag Specification Typography Layout */
 .product-title {
     font-size: 14px;
     font-weight: 400;
@@ -166,7 +166,7 @@ header {
     gap: 4px;
 }
 
-/* Takealot Action-Style Flat Button Sets */
+/* Action-Style Flat Button Sets */
 .escrow-btn {
     background-color: #1c873b; /* Prominent Green Checkout Primary Button */
     color: #ffffff !important;
@@ -227,108 +227,94 @@ header {
         padding: 6px 4px !important;
     }
 }
-/* Navigation Header Structure Modifications */
-.header-navbar {
-    background-color: #ffffff !important;
-    border-color: #e0e0e0 !important;
-    position: relative;
-    width: 100%;
+/* ==========================================================================
+   MSANZITRADE FINALIZED NAV STYLES
+   ========================================================================== */
+
+.msanzi-custom-nav {
+    display: block !important;
+    position: relative !important;
+    background-color: #0b3c4d !important; 
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    min-height: 70px !important;
+    width: 100% !important;
 }
 
-/* Master container setting up relative anchoring context points */
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    width: 100%;
+.msanzi-nav-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    width: 100% !important;
 }
 
-/* Left Corner Anchor */
-.logo-left-corner {
-    display: flex;
-    align-items: center;
-    z-index: 10;
+.msanzi-logo-left {
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 99 !important;
 }
 
-.brand-logo-img {
-    height: 42px;
-    width: auto;
-    object-fit: contain;
+.brand-title-center-override {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    white-space: nowrap !important;
+    z-index: 90 !important;
 }
 
-/* Perfect Absolute Alignment to Center of Screen */
-.brand-title-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    pointer-events: none; /* Allows underlying header components to remain clickable */
-    white-space: nowrap;
-    z-index: 5;
+.brand-title-center-override .logo-text {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
 }
 
-.brand-title-center .logo-text {
-    font-size: 20px;
-    font-weight: 800;
-    color: #00663c; /* Logo Green */
-    letter-spacing: -0.5px;
+.brand-title-center-override .logo-text span {
+    color: #f28e2b !important;
 }
 
-.badge-c2c {
-    font-size: 11px;
-    background-color: #FFB81C; /* Gold Accent */
-    color: #00663c;
-    padding: 2px 6px;
-    font-weight: 700;
-    border-radius: 3px;
-    vertical-align: middle;
-    margin-left: 4px;
+/* --- Dropdown Menu Refinements --- */
+.msanzi-collapse-target .dropdown-menu {
+    border-top: 3px solid #f28e2b !important;
+    border-radius: 0 0 8px 8px !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
 }
 
-/* Nav Item Profile Badging */
-.user-initials-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background-color: #f4f4f4;
-    color: #00663c;
-    border-color: #00663c !important;
-    font-size: 13px;
-    transition: background 0.2s;
+/* Ensure menu items have consistent brand-aligned padding and color */
+.msanzi-collapse-target .dropdown-item {
+    color: #0b3c4d !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease-in-out !important;
 }
 
-.user-initials-avatar:hover {
-    background-color: #eaeaea;
+/* Hover effect: Subtle orange tint for a premium look */
+.msanzi-collapse-target .dropdown-item:hover {
+    background-color: #fff8f0 !important;
+    color: #0b3c4d !important;
 }
 
-.btn-sell-nav {
-    background-color: #00663c;
-    border: none;
-    font-size: 13px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+/* Force icons to maintain teal color until hovered */
+.msanzi-collapse-target .dropdown-item i {
+    color: #0b3c4d !important;
 }
 
-.btn-sell-nav:hover {
-    background-color: #004d2c;
+/* Logo blend adjustment for the header */
+.logo-blend {
+    mix-blend-mode: multiply !important;
 }
 
-/* Custom Responsive Styles for Mobile Headers */
+/* Responsive Cleanup */
 @media (max-width: 991px) {
-    .brand-title-center {
-        position: static;
-        transform: none;
-        margin-left: 15px;
-        flex-grow: 1;
-        pointer-events: auto;
+    .brand-title-center-override .logo-text {
+        font-size: 18px !important;
     }
     
-    .brand-title-center .logo-text {
-        font-size: 17px;
-    }
-    
-    .navbar-collapse {
-        background-color: #ffffff;
-        padding: 15px 0 5px 0;
+    .msanzi-collapse-target {
+        margin-top: 45px !important;
+        background-color: #0b3c4d !important;
+        padding: 15px !important;
     }
 }
