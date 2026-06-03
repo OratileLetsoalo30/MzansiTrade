@@ -16,7 +16,7 @@
         <div class="container-fluid px-4">
             <form action="search.php" method="GET" class="mx-auto" style="max-width: 700px;">
                 <div class="input-group search-input-group">
-                    <input type="text" class="form-control" placeholder="Search hair, wigs, shoes, sneaker, Nike, closure, iPhone, speaker...">
+                    <input type="text" class="form-control" placeholder="Search for products, brands, or categories..." name="query" required>
                     
                     <select class="form-select">
                         <option value="">All Locations</option>
