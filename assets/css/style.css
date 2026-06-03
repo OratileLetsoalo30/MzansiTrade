@@ -42,7 +42,7 @@ header {
     letter-spacing: -0.5px;
 }
 
-/* Takealot Search Wrapper Bar Styles */
+/* Search Wrapper Bar Styles */
 .search-bar-wrapper {
     background-color: #f4f4f4;
     border-bottom: 1px solid var(--border-gray);
@@ -317,4 +317,14 @@ header {
         background-color: #0b3c4d !important;
         padding: 15px !important;
     }
+}
+.msanzi-collapse-target form input {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #f28e2b !important;
+    border-radius: 4px !important;
+}
+
+.msanzi-collapse-target form button {
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
 }

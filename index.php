@@ -1,3 +1,14 @@
+<?php
+// index.php logic
+$sql = "SELECT * FROM products WHERE 1=1";
+
+if (isset($_GET['location'])) {
+    $loc = mysqli_real_escape_string($conn, $_GET['location']);
+    $sql .= " AND location = '$loc'";
+}
+
+// Proceed to run your $sql query...
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +29,7 @@
                 <div class="input-group search-input-group">
                     <input type="text" class="form-control" placeholder="Search for products, brands, or categories..." name="query" required>
                     
-                    <select class="form-select">
+                    <select class="form-select" name="location" onchange="this.form.submit()">
                         <option value="">All Locations</option>
                         <option value="wynberg">Wynberg</option>
                         <option value="claremont">Claremont</option>
@@ -26,6 +37,11 @@
                         <option value="mowbray">Mowbray</option>
                         <option value="blouberg">Blouberg</option>
                         <option value="greenpoint">Greenpoint</option>
+                        <option value="khayelitsha">Khayelitsha</option>
+                        <option value="ottery">Ottery</option>
+                        <option value="delft">Delft</option>
+                        <option value="gugulethu">Gugulethu</option>
+                        <option value="nyanga">Nyanga</option>
                     </select>
                     
                     <button class="btn btn-search-submit" type="submit">

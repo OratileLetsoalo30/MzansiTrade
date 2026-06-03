@@ -3,6 +3,17 @@
 if (isset($_GET['q'])) {
     $query = strtolower(trim($_GET['q']));
 
+$location = '';
+
+if (isset($_GET['location']) && !empty($_GET['location'])) {
+    $location = strtolower(trim($_GET['location']));
+}
+
+if (!empty($location)) {
+    header("Location: index.php?location=" . urlencode($location));
+    exit;
+}
+
     // Define category mappings
     $map = [
         // Hair products
