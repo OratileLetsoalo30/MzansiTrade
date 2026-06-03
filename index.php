@@ -54,8 +54,11 @@ if (isset($_GET['location'])) {
 
     <div class="main-grid-container">
         <h4 class="grid-heading mb-4">
-            Trending Listings in Cape Town Townships
+            Trending Listings in Cape Town Township Areas
         </h4>
+      
+        </div>
+
 
         <div class="row row-cols-2 g-3 g-md-4">
             
