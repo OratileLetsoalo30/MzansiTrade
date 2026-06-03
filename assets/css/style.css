@@ -1,143 +1,298 @@
-/* =========================
-   GOOGLE FONTS
-========================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-
-/* =========================
-   GLOBAL STYLES
-========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
+/* style.css */
+:root {
+    --primary-color: #003366; /* Deep Blue to match your corporate header layout */
+    --secondary-color: #FFB81C; /* Gold/Yellow */
+    --background-light: #f4f7f6;
+    --text-dark: #333;
+    --white: #ffffff;
+    --verified-green: #28a745;
 }
 
-body{
-    background:#F8F9FA;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-/* =========================
-   SPLASH SCREEN
-========================= */
-
-.splash-body{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(
-        135deg,
-        #005F73,
-        #0A9396,
-        #F4A261
-    );
-    overflow:hidden;
+body {
+    background-color: var(--background-light);
+    color: var(--text-dark);
 }
 
-.splash-container{
-    text-align:center;
-    animation:fadeIn 1.5s ease;
-}
-
-.splash-logo{
-    width:220px;
-    height:auto;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    animation:floatLogo 3s infinite ease-in-out;
-}
-
-.splash-title{
-    margin-top:20px;
-    font-size:3rem;
-    color:white;
-    font-weight:700;
-}
-
-.splash-text{
-    margin-top:10px;
-    color:white;
-    font-size:1.1rem;
-    letter-spacing:1px;
-}
-
-
-/* =========================
-   LOADER
-========================= */
-
-.loader{
-    margin:30px auto 0;
-    width:50px;
-    height:50px;
-    border:5px solid rgba(255,255,255,0.3);
-    border-top:5px solid white;
-    border-radius:50%;
-    animation:spin 1s linear infinite;
-}
-
-
-/* =========================
-   ANIMATIONS
-========================= */
-
-@keyframes spin{
-    100%{
-        transform:rotate(360deg);
-    }
-}
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes floatLogo{
-    0%,100%{
-        transform:translateY(0px);
-    }
-
-    50%{
-        transform:translateY(-10px);
-    }
-}
-/* ABOUT PAGE */
-.about {
-    padding: 40px;
-    text-align: center;
-    background: #fff;
-}
-
-
-.about p {
-    max-width: 700px;
-    margin: 10px auto;
-    line-height: 1.6;
-}
-
-.about-boxes {
+/* Header & Navigation */
+header {
+    background-color: var(--primary-color);
+    padding: 15px 5%;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 30px;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--white);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.search-container {
+    display: flex;
+    flex: 1;
+    margin: 0 20px;
+    max-width: 600px;
+}
+
+.search-container input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.search-container select {
+    padding: 10px;
+    border: none;
+    border-left: 1px solid #ccc;
+    background: var(--white);
+    outline: none;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--white);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.dropdown-content a {
+    color: var(--text-dark);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.profile-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Product Grid Base layout */
+.container {
+    padding: 40px 5%;
+}
+
+.product-grid {
+    display: grid;
+    /* Uses responsive grid mapping matching Takealot grid configurations */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
 
-.box {
-    background: #fff3e6;
-    padding: 20px;
-    width: 250px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.product-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 51, 102, 0.15);
+}
+
+/* Integrated Custom Image Holder Block Mod */
+.product-image-holder {
+    width: 100%;
+    height: 220px;             /* Locked proportional desktop height */
+    background-color: #fdfdfd;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;             /* Padding prevents card borders from choking item details */
+    margin-bottom: 15px;
+}
+
+/* Optimized Image Elements rules */
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;       /* Displays full inventory detail neatly without stretching */
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.product-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.product-location {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.badge-verified {
+    display: inline-block;
+    background-color: var(--verified-green);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    align-self: center;
+}
+
+.badge-unverified {
+    display: inline-block;
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    align-self: center;
+}
+
+.contact-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #25D366; /* WhatsApp Green */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: auto;          /* Pushes action tray perfectly to row floor alignment */
+}
+
+.escrow-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Simple Form Styling */
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.form-container input, .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* * Shopify-Style Smart Mobile Optimization Media Break 
+ * Downscales image boundaries gracefully so they aren't bulky on smartphones
+ */
+@media (max-width: 767px) {
+    .container {
+        padding: 20px 3%;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 items side-by-side layout layout on mobile screen */
+        gap: 12px;
+    }
+    
+    .product-card {
+        padding: 10px;
+    }
+
+    .product-image-holder {
+        height: 135px;         /* Compact block image depth ratio matching mobile applications */
+        padding: 5px;
+        margin-bottom: 8px;
+    }
+
+    .product-title {
+        font-size: 14px;       /* Scale typography down proportionally */
+        line-height: 1.3;
+    }
+
+    .product-location {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .badge-verified, .badge-unverified {
+        font-size: 10px;
+        padding: 2px 6px;
+        margin-bottom: 10px;
+    }
+
+    .contact-btn, .escrow-btn {
+        padding: 8px 4px;
+        font-size: 12px;       /* Smaller, easily tappable interfaces */
+    }
 }

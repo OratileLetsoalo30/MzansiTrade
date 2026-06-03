@@ -1,344 +1,224 @@
-<?php
-// .php — MzansiTrade Homepage
-session_start();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MsanziTrade | Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/admission/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
 
-$page_title = 'Buy & Sell Locally in Cape Town';
+    <?php include 'header.php'; ?>
 
-// ── Sample listings data (replace with DB query later) ──────
-// Example: $listings = fetch_listings_from_db(limit: 8);
-$featured_listings = [
-  [
-    'id'       => 1,
-    'title'    => 'Brazilian Weave Bundle',
-    'price'    => 320,
-    'area'     => 'Wynberg',
-    'category' => 'hair',
-    'emoji'    => '💇',
-    'verified' => true,
-  ],
-  [
-    'id'       => 2,
-    'title'    => 'Nike Air Force 1 — Size 9',
-    'price'    => 850,
-    'area'     => 'Claremont',
-    'category' => 'shoes',
-    'emoji'    => '👟',
-    'verified' => true,
-  ],
-  [
-    'id'       => 3,
-    'title'    => 'Samsung A54 — Good Condition',
-    'price'    => 3200,
-    'area'     => 'Rondebosch',
-    'category' => 'devices',
-    'emoji'    => '📱',
-    'verified' => false,
-  ],
-  [
-    'id'       => 4,
-    'title'    => 'Zara Cargo Pants — Size M',
-    'price'    => 280,
-    'area'     => 'Blouberg',
-    'category' => 'clothing',
-    'emoji'    => '👗',
-    'verified' => true,
-  ],
-  [
-    'id'       => 5,
-    'title'    => 'Adidas Superstar — Size 8',
-    'price'    => 650,
-    'area'     => 'Green Point',
-    'category' => 'shoes',
-    'emoji'    => '👟',
-    'verified' => true,
-  ],
-  [
-    'id'       => 6,
-    'title'    => 'Portable Speaker — JBL Flip 6',
-    'price'    => 1100,
-    'area'     => 'Mowbray',
-    'category' => 'devices',
-    'emoji'    => '🔊',
-    'verified' => false,
-  ],
-  [
-    'id'       => 7,
-    'title'    => 'Human Hair Closure 4x4',
-    'price'    => 480,
-    'area'     => 'Wynberg',
-    'category' => 'hair',
-    'emoji'    => '💇',
-    'verified' => true,
-  ],
-  [
-    'id'       => 8,
-    'title'    => 'Leather Crossbody Bag',
-    'price'    => 390,
-    'area'     => 'Observatory',
-    'category' => 'bags',
-    'emoji'    => '👜',
-    'verified' => true,
-  ],
-];
-
-$categories = [
-  ['slug' => 'hair',     'emoji' => '💇', 'name' => 'Hair & Beauty',      'count' => 340],
-  ['slug' => 'shoes',    'emoji' => '👟', 'name' => 'Shoes & Sneakers',   'count' => 512],
-  ['slug' => 'devices',  'emoji' => '📱', 'name' => 'Devices & Tech',     'count' => 278],
-  ['slug' => 'clothing', 'emoji' => '👗', 'name' => 'Clothing',           'count' => 640],
-  ['slug' => 'home',     'emoji' => '🏠', 'name' => 'Home & Living',      'count' => 190],
-  ['slug' => 'bags',     'emoji' => '🎒', 'name' => 'Bags & Accessories', 'count' => 225],
-];
-
-$areas = [
-  'Wynberg', 'Claremont', 'Rondebosch', 'Mowbray',
-  'Blouberg', 'Green Point', 'Observatory', 'Bellville',
-  'Khayelitsha', 'Mitchells Plain', 'Athlone', 'Parow',
-];
-
-include 'includes/header.php';
-?>
-
-<!-- ════════════════════════════════════════════════════════
-     HERO SECTION
-════════════════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-bg-grid"   aria-hidden="true"></div>
-  <div class="hero-glow-teal" aria-hidden="true"></div>
-  <div class="hero-glow-orange" aria-hidden="true"></div>
-
-  <div class="container">
-    <div class="hero-content">
-
-      <!-- Live badge -->
-      <div class="hero-badge">
-        <span class="badge-dot" aria-hidden="true"></span>
-        Cape Town's local marketplace
-      </div>
-
-      <!-- Headline -->
-      <h1>
-        Buy &amp; sell locally.<br>
-        <span class="accent-teal">Securely.</span>
-        <span class="accent-orange">Seamlessly.</span>
-      </h1>
-
-      <!-- Sub-headline -->
-      <p class="hero-sub">
-        MzansiTrade connects Cape Town traders — from Wynberg to Blouberg — with
-        a secure escrow system, verified sellers, and local pickup points (PUDO/PAXI).
-      </p>
-
-      <!-- CTA buttons -->
-      <div class="hero-actions">
-        <a href="listings.php" class="btn btn-teal btn-lg">
-          <i class="ti ti-search" aria-hidden="true"></i> Browse listings
-        </a>
-        <a href="register.php" class="btn btn-ghost btn-lg">
-          Become a seller <i class="ti ti-arrow-right" aria-hidden="true"></i>
-        </a>
-      </div>
-
-      <!-- Stats -->
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">2.4<em>k+</em></div>
-          <div class="stat-label">Active listings</div>
+    <div class="bg-white border-bottom py-4 mb-4 shadow-sm">
+        <div class="container">
+            <form action="search.php" method="GET" class="mx-auto main-search-bar">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-lg border-secondary-subtle" placeholder="Search hair, wigs, shoes, sneaker, Nike, closure, iPhone, speaker..." style="font-size: 1rem;">
+                    
+                    <select class="form-select form-select-lg border-secondary-subtle bg-light text-dark" style="max-width: 180px; font-size: 0.95rem;">
+                        <option value="">Locations</option>
+                        <option value="gugulethu">Gugulethu</option>
+                        <option value="khayelitsha">Khayelitsha</option>
+                        <option value="nyanga">Nyanga</option>
+                        <option value="delft">Delft</option>
+                        <option value="ottery">Ottery</option>
+                        <option value="wynberg">Wynberg</option>
+                        <option value="claremont">Claremont</option>
+                        <option value="rondebosch">Rondebosch</option>  
+                        <option value="mowbray">Mowbray</option>
+                        <option value="blouberg">Blouberg</option>
+                        <option value="greenpoint">Greenpoint</option>
+                    </select>
+                    
+                    <button class="btn btn-msanzi-accent px-4" type="submit">
+                        <i class="bi bi-search fs-5"></i>
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">800<em>+</em></div>
-          <div class="stat-label">Verified sellers</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">12<em>+</em></div>
-          <div class="stat-label">CT neighbourhoods</div>
-        </div>
-      </div>
-
-    </div><!-- /.hero-content -->
-  </div><!-- /.container -->
-</section>
-
-<div class="divider"></div>
-
-<!-- ════════════════════════════════════════════════════════
-     BROWSE BY AREA
-════════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <p class="section-label">Shop near you</p>
-      <h2>Browse by area</h2>
     </div>
 
-    <div class="areas-grid">
-      <?php foreach ($areas as $area): ?>
-        <a href="listings.php?area=<?= urlencode($area) ?>" class="area-chip">
-          <i class="ti ti-map-pin" aria-hidden="true"></i>
-          <?= htmlspecialchars($area) ?>
-        </a>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
+    <div class="container my-5">
+        <h3 class="fw-bold mb-4 text-dark d-flex align-items-center">
+            <i class="bi bi-fire text-danger me-2"></i> Trending Listings in Cape Town Townships
+        </h3>
 
-<!-- ════════════════════════════════════════════════════════
-     SHOP BY CATEGORY
-════════════════════════════════════════════════════════ -->
-<section class="section" style="padding-top: 0;">
-  <div class="container">
-    <div class="section-header">
-      <p class="section-label">What's trending</p>
-      <h2>Shop by category</h2>
-    </div>
-
-    <div class="cats-grid">
-      <?php foreach ($categories as $cat): ?>
-        <a href="listings.php?cat=<?= urlencode($cat['slug']) ?>" class="cat-card">
-          <div class="cat-emoji"><?= $cat['emoji'] ?></div>
-          <div class="cat-name"><?= htmlspecialchars($cat['name']) ?></div>
-          <div class="cat-count"><?= number_format($cat['count']) ?> listings</div>
-        </a>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     FEATURED LISTINGS
-════════════════════════════════════════════════════════ -->
-<section class="section" style="padding-top: 0;">
-  <div class="container">
-    <div class="section-header" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
-      <div>
-        <p class="section-label">Just listed</p>
-        <h2>Fresh near you</h2>
-      </div>
-      <a href="listings.php" class="btn btn-ghost btn-sm">
-        View all <i class="ti ti-arrow-right" aria-hidden="true"></i>
-      </a>
-    </div>
-
-    <div class="listings-grid">
-      <?php foreach ($featured_listings as $item): ?>
-        <a href="listing.php?id=<?= (int)$item['id'] ?>" class="listing-card">
-          <div class="listing-img"><?= $item['emoji'] ?></div>
-          <div class="listing-body">
-            <div class="listing-title">
-              <?= htmlspecialchars($item['title']) ?>
-              <?php if ($item['verified']): ?>
-                <span class="badge-verified">Verified</span>
-              <?php endif; ?>
+        <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-3 g-md-4">
+            
+            <div class="col">
+                <div class="card h-100 product-card shadow-sm border-0">
+                    <div class="product-image-holder">
+                        <img src="assets/img/heel.png" alt="Black Steve Madden Heels" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Heels'">
+                    </div>
+                    <div class="card-body d-flex flex-column text-start p-2 p-md-3">
+                        <div class="d-flex flex-column mb-2">
+                            <span class="badge-verified mb-1 align-self-start"><i class="bi bi-patch-check-fill"></i> Verified</span>
+                            <h6 class="fw-bold card-title mb-0 text-dark text-truncate">Black Steve Madden heels</h6>
+                        </div>
+                        <p class="text-muted small mb-3"><i class="bi bi-geo-alt-fill text-danger"></i> Khayelitsha</p>
+                        
+                        <div class="mt-auto row g-2">
+                            <div class="col-12 col-md-6">
+                                <a href="https://wa.me/27820000000?text=Hi,%20I'm%20interested%20in%20the%20Black%20Steve%20Madden%20Heels" target="_blank" class="btn whatsapp-btn btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-whatsapp"></i> WhatsApp
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a href="checkout.php?item=1" class="btn btn-msanzi-primary btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-shield-lock-fill"></i> Buy Escrow
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="listing-location">
-              <i class="ti ti-map-pin" aria-hidden="true"></i>
-              <?= htmlspecialchars($item['area']) ?>
+
+            <div class="col">
+                <div class="card h-100 product-card shadow-sm border-0">
+                    <div class="product-image-holder">
+                        <img src="assets/img/sneaker.png" alt="Nike Retro J4 Sneaker" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Sneaker'">
+                    </div>
+                    <div class="card-body d-flex flex-column text-start p-2 p-md-3">
+                        <div class="d-flex flex-column mb-2">
+                            <span class="badge-verified mb-1 align-self-start"><i class="bi bi-patch-check-fill"></i> Verified</span>
+                            <h6 class="fw-bold card-title mb-0 text-dark text-truncate">Nike Retro J4 Sneaker</h6>
+                        </div>
+                        <p class="text-muted small mb-3"><i class="bi bi-geo-alt-fill text-danger"></i> Gugulethu</p>
+                        
+                        <div class="mt-auto row g-2">
+                            <div class="col-12 col-md-6">
+                                <a href="https://wa.me/27820000000?text=Hi,%20I'm%20interested%20in%20the%20Nike%20Sneaker" target="_blank" class="btn whatsapp-btn btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-whatsapp"></i> WhatsApp
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a href="checkout.php?item=2" class="btn btn-msanzi-primary btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-shield-lock-fill"></i> Buy Escrow
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="listing-price">R <?= number_format($item['price']) ?></div>
-          </div>
-        </a>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
 
-<!-- ════════════════════════════════════════════════════════
-     TRUST STRIP
-════════════════════════════════════════════════════════ -->
-<div class="trust-strip">
-  <div class="container">
-    <div class="trust-grid">
+            <div class="col">
+                <div class="card h-100 product-card shadow-sm border-0">
+                    <div class="product-image-holder">
+                        <img src="assets/img/speaker.png" alt="Bluetooth Speaker" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Speaker'">
+                    </div>
+                    <div class="card-body d-flex flex-column text-start p-2 p-md-3">
+                        <div class="d-flex flex-column mb-2">
+                            <span class="badge-unverified mb-1 align-self-start"><i class="bi bi-exclamation-triangle-fill"></i> Unverified</span>
+                            <h6 class="fw-bold card-title mb-0 text-dark text-truncate">JBL Bluetooth Speaker</h6>
+                        </div>
+                        <p class="text-muted small mb-3"><i class="bi bi-geo-alt-fill text-danger"></i> Nyanga</p>
+                        
+                        <div class="mt-auto row g-2">
+                            <div class="col-12 col-md-6">
+                                <a href="https://wa.me/27820000000?text=Hi,%20I'm%20interested%20in%20the%20Speaker" target="_blank" class="btn whatsapp-btn btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-whatsapp"></i> WhatsApp
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a href="checkout.php?item=3" class="btn btn-msanzi-primary btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-shield-lock-fill"></i> Buy Escrow
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      <div class="trust-item">
-        <div class="trust-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
-        <div>
-          <p class="trust-title">Escrow protection</p>
-          <p class="trust-desc">Funds are only released once you confirm receipt. Zero fraud risk for buyers and sellers.</p>
+            <div class="col">
+                <div class="card h-100 product-card shadow-sm border-0">
+                    <div class="product-image-holder">
+                        <img src="assets/img/iphone.png" alt="iPhone" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=iPhone'">
+                    </div>
+                    <div class="card-body d-flex flex-column text-start p-2 p-md-3">
+                        <div class="d-flex flex-column mb-2">
+                            <span class="badge-verified mb-1 align-self-start"><i class="bi bi-patch-check-fill"></i> Verified</span>
+                            <h6 class="fw-bold card-title mb-0 text-dark text-truncate">Blue iPhone 17 Pro Max Used</h6>
+                        </div>
+                        <p class="text-muted small mb-3"><i class="bi bi-geo-alt-fill text-danger"></i> Delft</p>
+                        
+                        <div class="mt-auto row g-2">
+                            <div class="col-12 col-md-6">
+                                <a href="https://wa.me/27820000000?text=Hi,%20I'm%20interested%20in%20the%20iPhone" target="_blank" class="btn whatsapp-btn btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-whatsapp"></i> WhatsApp
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a href="checkout.php?item=4" class="btn btn-msanzi-primary btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-shield-lock-fill"></i> Buy Escrow
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 product-card shadow-sm border-0">
+                    <div class="product-image-holder">
+                        <img src="assets/img/wig.png" alt="Wig" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=13x4+Wig'">
+                    </div>
+                    <div class="card-body d-flex flex-column text-start p-2 p-md-3">
+                        <div class="d-flex flex-column mb-2">
+                            <span class="badge-verified mb-1 align-self-start"><i class="bi bi-patch-check-fill"></i> Verified</span>
+                            <h6 class="fw-bold card-title mb-0 text-dark text-truncate">28" 13x4 Lace Front Wig</h6>
+                        </div>
+                        <p class="text-muted small mb-3"><i class="bi bi-geo-alt-fill text-danger"></i> Ottery</p>
+                        
+                        <div class="mt-auto row g-2">
+                            <div class="col-12 col-md-6">
+                                <a href="https://wa.me/27820000000?text=Hi,%20I'm%20interested%20in%20the%2013x4%20Wig" target="_blank" class="btn whatsapp-btn btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-whatsapp"></i> WhatsApp
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a href="checkout.php?item=5" class="btn btn-msanzi-primary btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-shield-lock-fill"></i> Buy Escrow
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 product-card shadow-sm border-0">
+                    <div class="product-image-holder">
+                        <img src="assets/img/closure.png" alt="Closure" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Closure'">
+                    </div>
+                    <div class="card-body d-flex flex-column text-start p-2 p-md-3">
+                        <div class="d-flex flex-column mb-2">
+                            <span class="badge-unverified mb-1 align-self-start"><i class="bi bi-exclamation-triangle-fill"></i> Unverified</span>
+                            <h6 class="fw-bold card-title mb-0 text-dark text-truncate">Closure + 3 bundles 24"</h6>
+                        </div>
+                        <p class="text-muted small mb-3"><i class="bi bi-geo-alt-fill text-danger"></i> Khayelitsha</p>
+                        
+                        <div class="mt-auto row g-2">
+                            <div class="col-12 col-md-6">
+                                <a href="https://wa.me/27820000000?text=Hi,%20I'm%20interested%20in%20the%20Closure" target="_blank" class="btn whatsapp-btn btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-whatsapp"></i> WhatsApp
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a href="checkout.php?item=6" class="btn btn-msanzi-primary btn-xs-custom w-100 py-2 rounded-2">
+                                    <i class="bi bi-shield-lock-fill"></i> Buy Escrow
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
-
-      <div class="trust-item">
-        <div class="trust-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
-        <div>
-          <p class="trust-title">Verified sellers</p>
-          <p class="trust-desc">All sellers verify their SA ID. Shop with confidence knowing who you're trading with.</p>
-        </div>
-      </div>
-
-      <div class="trust-item">
-        <div class="trust-icon"><i class="ti ti-truck-delivery" aria-hidden="true"></i></div>
-        <div>
-          <p class="trust-title">Local pickup points</p>
-          <p class="trust-desc">PUDO &amp; PAXI integration keeps delivery costs low across Cape Town.</p>
-        </div>
-      </div>
-
-      <div class="trust-item">
-        <div class="trust-icon"><i class="ti ti-wifi-off" aria-hidden="true"></i></div>
-        <div>
-          <p class="trust-title">Low-data friendly</p>
-          <p class="trust-desc">Built lite for South African network conditions. Accessible for all traders.</p>
-        </div>
-      </div>
-
-    </div><!-- /.trust-grid -->
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════════
-     HOW IT WORKS
-════════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <div class="section-header" style="text-align:center; max-width:500px; margin: 0 auto 2.5rem;">
-      <p class="section-label">Simple process</p>
-      <h2>How MzansiTrade works</h2>
     </div>
 
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <h3 class="step-title">Create your account</h3>
-        <p class="step-desc">Sign up and verify your SA ID in minutes. Both buyers and sellers are protected from the start.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <h3 class="step-title">List or browse</h3>
-        <p class="step-desc">Post your items with photos and a price, or search listings across your Cape Town neighbourhood.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <h3 class="step-title">Pay securely</h3>
-        <p class="step-desc">Funds are held in escrow and released only once you confirm your item has arrived safely.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">04</div>
-        <h3 class="step-title">Collect locally</h3>
-        <p class="step-desc">Pick up from your nearest PUDO or PAXI point, or arrange a direct meetup with the seller.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════
-     CTA BANNER
-════════════════════════════════════════════════════════ -->
-<section class="section" style="padding-top:0;">
-  <div class="container">
-    <div class="cta-banner">
-      <h2>Ready to start trading?</h2>
-      <p>Join hundreds of Cape Town traders already on MzansiTrade — it's free.</p>
-      <div class="cta-actions">
-        <a href="register.php" class="btn btn-teal btn-lg">
-          <i class="ti ti-user-plus" aria-hidden="true"></i> Create free account
-        </a>
-        <a href="sell.php" class="btn btn-ghost btn-lg">
-          List your first item <i class="ti ti-arrow-right" aria-hidden="true"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<?php include 'includes/footer.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
