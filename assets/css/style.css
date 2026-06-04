@@ -346,3 +346,65 @@ body {
 .mzansi-profile-card .table tbody td {
     padding: 20px;
 }
+/* ==========================================================================
+   8. CREATIVE LISTING FORM (sell.php)
+   ========================================================================== */
+.sell-input-icon {
+    color: var(--accent-orange) !important;
+    font-size: 1.1rem;
+}
+
+/* Premium form control override */
+.mzansi-auth-card .form-control-lg {
+    border: 2px solid var(--border-subtle);
+    border-radius: 12px;
+    font-size: 15px;
+    padding: 14px 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.mzansi-auth-card .form-control-lg:focus {
+    border-color: var(--primary-teal);
+    background-color: var(--white) !important;
+    box-shadow: 0 4px 12px rgba(11, 60, 77, 0.05);
+}
+
+/* Creative Drag & Drop style File Upload box */
+.custom-file-upload {
+    border: 2px dashed var(--primary-teal) !important;
+    background-color: #fcfdfe !important;
+    border-radius: 14px;
+    padding: 25px 20px;
+    transition: all 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #f1f5f7 !important;
+    border-color: var(--accent-orange) !important;
+}
+
+.custom-file-upload input[type="file"] {
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    margin-top: 10px;
+}
+
+/* Unverified account locked state box */
+.locked-state-box {
+    background: linear-gradient(135deg, rgba(242, 142, 43, 0.06) 0%, rgba(11, 60, 77, 0.04) 100%) !important;
+    border: 1px solid rgba(242, 142, 43, 0.2) !important;
+    border-radius: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+/* Standardized spacing override for input groupings */
+.mzansi-auth-card .input-group {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.mzansi-auth-card .input-group-text {
+    border: 2px solid var(--border-subtle);
+    padding-left: 20px;
+    padding-right: 20px;
+}
