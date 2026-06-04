@@ -254,6 +254,6 @@ body {
     }
 }
 #splash-screen {
-    /* Perfectly matching your header gradient */
+    /* Ensures the splash screen covers everything with your branding */
     background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%) !important;
 }

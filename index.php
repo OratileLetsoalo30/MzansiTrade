@@ -99,27 +99,22 @@ $_SESSION['splash_shown'] = true;
     </style>
 </head>
 <body>
-   <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%); transition: opacity 0.6s ease-in-out;">
+    <?php if ($showSplash): ?>
+<div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%); transition: opacity 0.6s ease-in-out;">
     <img src="assets/img/logo.png" alt="MzansiTrade Logo" style="max-width: 250px; height: auto; margin-bottom: 30px;">
     <div class="spinner-border" style="color: #ffc107; width: 3rem; height: 3rem;" role="status"></div>
 </div>
-
 <script>
-    // Runs every time the page is opened
+    
     window.addEventListener('load', function() {
         const splash = document.getElementById('splash-screen');
-        
-        // Wait 5 seconds
         setTimeout(() => {
             splash.style.opacity = '0';
-            
-            // Fade out
-            setTimeout(() => { 
-                splash.style.display = 'none'; 
-            }, 600);
-        }, 5000); 
+            setTimeout(() => { splash.style.display = 'none'; }, 600);
+        }, 5000); // Stays for 5 seconds
     });
 </script>
+<?php endif; ?>
     <?php include 'includes/header.php'; ?>
 
     <div class="search-bar-wrapper py-3">
