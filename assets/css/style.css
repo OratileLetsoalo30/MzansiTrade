@@ -257,3 +257,40 @@ body {
     /* Ensures the splash screen covers everything with your branding */
     background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%) !important;
 }
+/* ==========================================================================
+   6. AUTHENTICATION PAGES (Login / Register)
+   ========================================================================== */
+.mzansi-login-body {
+    background: linear-gradient(180deg, var(--primary-teal) 0%, #061920 100%) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mzansi-auth-card {
+    background: var(--white);
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    padding: 40px !important;
+    width: 100%;
+    max-width: 400px;
+}
+
+.mzansi-auth-card h3 {
+    font-family: 'Syne', sans-serif !important;
+    color: var(--primary-teal) !important;
+    margin-bottom: 25px;
+}
+
+.mzansi-auth-card .form-control {
+    border: 2px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.mzansi-auth-card .form-control:focus {
+    border-color: var(--primary-teal);
+    box-shadow: none;
+}
