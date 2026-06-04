@@ -28,6 +28,14 @@ if (isset($_POST['register_btn'])) {
     <title>Join MzansiTrade</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+    /* This overrides everything to force the background */
+    body.mzansi-login-body {
+        background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%) !important;
+        background-attachment: fixed !important;
+        min-height: 100vh !important;
+    }
+</style>
 </head>
 <body class="mzansi-login-body">
     <?php include 'header.php'; ?>
