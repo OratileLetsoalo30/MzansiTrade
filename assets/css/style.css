@@ -305,3 +305,44 @@ body {
     margin: 0 !important;
     padding: 0 !important;
 }
+/* ==========================================================================
+   7. PROFILE PAGE COMPONENTS
+   ========================================================================== */
+.mzansi-profile-card {
+    background: var(--white);
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    padding: 30px !important;
+}
+
+.profile-avatar {
+    width: 80px; 
+    height: 80px; 
+    font-size: 30px;
+    background-color: var(--primary-teal);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+}
+
+/* Ensure tables inside profile cards look clean */
+.mzansi-profile-card .table {
+    margin-bottom: 0 !important;
+}
+
+.mzansi-profile-card .table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid var(--border-subtle);
+    padding: 15px 20px;
+    font-family: 'Syne', sans-serif;
+    color: var(--primary-teal);
+}
+
+.mzansi-profile-card .table tbody td {
+    padding: 20px;
+}

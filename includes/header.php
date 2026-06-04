@@ -43,14 +43,14 @@ include_once 'db_config.php';
                     </a>
                     
                     <span class="small fw-bold mt-1" style="font-size: 11px; color: #f28e2b;">
-                        <?php echo htmlspecialchars($_SESSION['username'] ?? 'Mzansi User'); ?>
+                        <?php echo htmlspecialchars($_SESSION['username'] ?? 'Mzansi User'); ?
                     </span>
 
                     <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-0 rounded-0" aria-labelledby="userDropdown" style="width: 240px; border-top: 3px solid #f28e2b !important;">
                         
-                        <li><a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="profile.php" style="color: #0b3c4d; font-size: 14px;">
+                        <li><a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="/pages/profile.php" style="color: #0b3c4d; font-size: 14px;">
                             <i class="bi bi-person-gear fs-5" style="color: #0b3c4d;"></i>Profile Settings
-                        </a></li>
+                        </a></li> 
                         
                         <li><a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="index.php" style="color: #0b3c4d; font-size: 14px;">
                             <i class="bi bi-house-door fs-5" style="color: #0b3c4d;"></i>Home
