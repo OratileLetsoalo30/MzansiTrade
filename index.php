@@ -1,6 +1,11 @@
 <?php
-// index.php configuration details
+session_start();
+$showSplash = !isset($_SESSION['splash_shown']);
+$_SESSION['splash_shown'] = true;
 ?>
+<?php if ($showSplash): ?>
+    <?php include 'splash.php'; exit; ?>
+<?php endif; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +23,7 @@
             background-color: #f8f9fa;
         }
 
-        /* Search Utility Styling directly below header */
+        /* Search Utility Styling */
         .search-bar-wrapper {
             background-color: #f1f3f5;
             border-bottom: 1px solid #e9ecef;
@@ -37,15 +42,13 @@
             font-weight: 700;
         }
 
-        /* FORCE HERO BACKGROUND: Rich Dark Teal to match your branding header */
+        /* Hero Banner Overrides */
         .mzansi-premium-hero {
             background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%) !important;
             padding: 80px 20px !important;
             color: #ffffff !important;
             border-bottom: 4px solid #f28e2b;
         }
-
-        /* Creative Headline Badge */
         .hero-geo-badge {
             background: rgba(242, 142, 43, 0.15) !important;
             border: 1px solid rgba(242, 142, 43, 0.4) !important;
@@ -58,8 +61,6 @@
             border-radius: 50px;
             display: inline-flex;
         }
-
-        /* Structural Creative Title Font */
         .hero-headline-title {
             font-family: 'Syne', sans-serif;
             font-size: 3.8rem;
@@ -68,15 +69,12 @@
             letter-spacing: -0.02em;
             color: #ffffff !important;
         }
-
-        /* Vibrant Multi-Color Text Effect */
         .gradient-accent-text {
             background: linear-gradient(45deg, #f28e2b 0%, #ffc107 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
         }
-
         .hero-body-summary {
             color: #ced4da !important;
             font-size: 17px;
@@ -84,7 +82,7 @@
             font-weight: 400;
         }
 
-        /* Highlighted Dashboard Stat Units */
+        /* Statistics */
         .stat-giant-number {
             font-family: 'Syne', sans-serif;
             color: #ffc107 !important;
@@ -101,7 +99,27 @@
     </style>
 </head>
 <body>
+   <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%); transition: opacity 0.6s ease-in-out;">
+    <img src="assets/img/logo.png" alt="MzansiTrade Logo" style="max-width: 250px; height: auto; margin-bottom: 30px;">
+    <div class="spinner-border" style="color: #ffc107; width: 3rem; height: 3rem;" role="status"></div>
+</div>
 
+<script>
+    // Runs every time the page is opened
+    window.addEventListener('load', function() {
+        const splash = document.getElementById('splash-screen');
+        
+        // Wait 5 seconds
+        setTimeout(() => {
+            splash.style.opacity = '0';
+            
+            // Fade out
+            setTimeout(() => { 
+                splash.style.display = 'none'; 
+            }, 600);
+        }, 5000); 
+    });
+</script>
     <?php include 'includes/header.php'; ?>
 
     <div class="search-bar-wrapper py-3">
@@ -118,6 +136,11 @@
                         <option value="nyanga">Nyanga</option>
                         <option value="delft">Delft</option>
                         <option value="ottery">Ottery</option>
+                        <option value="wynberg">Wynberg</option>
+                        <option value="blouberg">Blouberg</option>  
+                        <option value="claremont">Claremont</option>
+                        <option value="langa">Langa</option>
+                        <option value="rondebosch">Rondebosch</option>
                     </select>
                     
                     <button class="btn btn-search-submit" type="submit">Search</button>
@@ -136,7 +159,7 @@
                 <span class="gradient-accent-text">Securely. Seamlessly.</span>
             </h1>
             <p class="hero-body-summary mx-auto mb-5" style="max-width: 650px;">
-                MzansiTrade connects Cape Town traders — from Wynberg to Blouberg — with a secure escrow system, verified sellers, and local pickup points.
+                MzansiTrade connects Cape Town traders — all local townships — with a secure escrow system, verified sellers, and local pickup points.
             </p>
             
             <div class="row justify-content-center g-4">
@@ -160,9 +183,9 @@
         <h4 class="fw-bold mb-4" style="color: #0b3c4d; font-family: 'Syne', sans-serif;">Trending Listings in Cape Town Township Areas</h4>
         
         <h5 class="category-divider-title mb-4"><i class="bi bi-tag-fill me-2" style="color: #f28e2b;"></i>Trending in Shoes</h5>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
+        <div class="row justify-content-start g-4 mb-5">
             
-            <div class="col">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
                         <img src="assets/img/heel.png" alt="Black Heels" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Heels'">
@@ -180,7 +203,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
                         <img src="assets/img/sneaker.png" alt="Sneaker" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Sneaker'">
@@ -201,9 +224,9 @@
         </div>
 
         <h5 class="category-divider-title mb-4"><i class="bi bi-laptop-fill me-2" style="color: #f28e2b;"></i>Trending in Devices</h5>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
+        <div class="row justify-content-start g-4 mb-5">
             
-            <div class="col">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
                         <img src="assets/img/speaker.png" alt="JBL Speaker" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Speaker'">
@@ -221,12 +244,30 @@
                 </div>
             </div>
 
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <div class="product-image-holder">
+                        <img src="assets/img/iphone.png" alt="iPhone" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=iPhone'">
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">iPhone 13 Pro Max 256GB</h6>
+                        <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Langa</p>
+                        <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R11 500</h5>
+                        <div class="mt-auto row g-2">
+                            <div class="col-12"><a href="checkout.php?item=5" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="#" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <h5 class="category-divider-title mb-4"><i class="bi bi-scissors me-2" style="color: #f28e2b;"></i>Trending in Hair Products</h5>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
+        <div class="row justify-content-start g-4 mb-5">
             
-            <div class="col">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
                         <img src="assets/img/wig.png" alt="Lace Wig" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Wig'">
@@ -238,6 +279,24 @@
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R3 200</h5>
                         <div class="mt-auto row g-2">
                             <div class="col-12"><a href="checkout.php?item=4" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="#" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <div class="product-image-holder">
+                        <img src="assets/img/closure.png" alt="Hair Closure" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Closure'">
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">3x 24" Brazilian Hair Bundles + Closure </h6>
+                        <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Delft</p>
+                        <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R1 800</h5>
+                        <div class="mt-auto row g-2">
+                            <div class="col-12"><a href="checkout.php?item=6" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
                             <div class="col-12"><a href="#" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>

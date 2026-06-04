@@ -4,9 +4,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    --primary-teal: #0b3c4d;     /* Deep Teal Branding Layout Base */
-    --accent-orange: #f28e2b;    /* Accent Highlight / Orange Logo Text */
-    --accent-yellow: #ffc107;    /* Primary Action Buttons & Star Labels */
+    --primary-teal: #0b3c4d;     
+    --accent-orange: #f28e2b;    
+    --accent-yellow: #ffc107;    
     --background-light: #f8f9fa; 
     --white: #ffffff;
     --text-dark: #1a2a30;        
@@ -29,7 +29,7 @@ body {
 }
 
 /* ==========================================================================
-   1. SEARCH BAR CONTAINER (Positioned directly below header)
+   1. SEARCH BAR CONTAINER
    ========================================================================== */
 .search-bar-wrapper {
     background-color: #f1f3f5;
@@ -71,7 +71,7 @@ body {
 }
 
 /* ==========================================================================
-   2. HIGH-VISIBILITY HERO SHOWCASE BLOCK (Creative Typography & Dark Backdrop)
+   2. HERO SHOWCASE BLOCK
    ========================================================================== */
 .mzansi-premium-hero {
     background: linear-gradient(180deg, var(--primary-teal) 0%, #061920 100%) !important;
@@ -81,7 +81,6 @@ body {
     text-align: center;
 }
 
-/* Local Badge Element */
 .hero-geo-badge {
     background: rgba(242, 142, 43, 0.15) !important;
     border: 1px solid rgba(242, 142, 43, 0.4) !important;
@@ -95,7 +94,6 @@ body {
     display: inline-flex;
 }
 
-/* Premium Display Title */
 .hero-headline-title {
     font-family: 'Syne', sans-serif;
     font-size: 3.8rem;
@@ -105,7 +103,6 @@ body {
     color: var(--white) !important;
 }
 
-/* Dynamic Multi-Color Gradient Text (Securely. Seamlessly.) */
 .gradient-accent-text {
     background: linear-gradient(45deg, var(--accent-orange) 0%, var(--accent-yellow) 100%);
     -webkit-background-clip: text;
@@ -120,7 +117,6 @@ body {
     font-weight: 400;
 }
 
-/* --- Dashboard Statistics Sub-Grid --- */
 .stat-giant-number {
     font-family: 'Syne', sans-serif;
     color: var(--accent-yellow) !important;
@@ -137,7 +133,7 @@ body {
 }
 
 /* ==========================================================================
-   3. PRODUCT SHELF MARKETPLACE GRID
+   3. PRODUCT SHELF MARKETPLACE GRID (Layout Adjusted)
    ========================================================================== */
 .main-grid-container {
     max-width: 1200px;
@@ -165,9 +161,10 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
+/* Ensures images don't stretch when column width changes */
 .product-image-holder {
     width: 100%;
-    height: 220px;
+    height: 220px; 
     background-color: var(--white);
     display: flex;
     align-items: center;
@@ -250,9 +247,13 @@ body {
         padding: 60px 15px !important;
     }
     .product-image-holder {
-        height: 150px;
+        height: 180px; /* Kept slightly taller on mobile so images don't look squished */
     }
     .stat-giant-number {
         font-size: 1.8rem;
     }
+}
+#splash-screen {
+    /* Perfectly matching your header gradient */
+    background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%) !important;
 }
