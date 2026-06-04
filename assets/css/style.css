@@ -1,153 +1,197 @@
-/* style.css */
+/* ==========================================================================
+   MZANSITRADE UNIFIED DESIGN SYSTEM & TYPOGRAPHY
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
 :root {
-    --primary-color: #00663c; /* Corporate Logo Green */
-    --secondary-color: #FFB81C; /* Corporate Yellow Accent */
-    --takealot-blue: #0b79bf; /* Clean retail link blue */
-    --background-white: #ffffff; /* Clean pure white background requested */
-    --text-charcoal: #4a4a4a; /* Professional softer dark text */
-    --text-light-gray: #9b9b9b;
-    --border-gray: #e0e0e0;
+    --primary-teal: #0b3c4d;     /* Deep Teal Branding Layout Base */
+    --accent-orange: #f28e2b;    /* Accent Highlight / Orange Logo Text */
+    --accent-yellow: #ffc107;    /* Primary Action Buttons & Star Labels */
+    --background-light: #f8f9fa; 
+    --white: #ffffff;
+    --text-dark: #1a2a30;        
+    --text-muted: #6c757d;       
+    --border-subtle: #e9ecef;    
     --verified-green: #1c873b;
-    --unverified-red: #d93f3f;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 body {
-    background-color: var(--background-white);
-    color: var(--text-charcoal);
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Header & Navigation */
-header {
-    background-color: var(--primary-color);
-    padding: 12px 4%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--white);
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--secondary-color);
-    text-decoration: none;
-    letter-spacing: -0.5px;
-}
-
-/* Search Wrapper Bar Styles */
+/* ==========================================================================
+   1. SEARCH BAR CONTAINER (Positioned directly below header)
+   ========================================================================== */
 .search-bar-wrapper {
-    background-color: #f4f4f4;
-    border-bottom: 1px solid var(--border-gray);
+    background-color: #f1f3f5;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+    z-index: 10;
 }
 
 .search-input-group {
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 2px solid var(--primary-teal);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(11, 60, 77, 0.08);
+    background-color: var(--white);
 }
 
 .search-input-group input[type="text"] {
-    border: none;
     font-size: 14px;
-    padding: 10px 14px;
+    padding: 12px 16px;
 }
 
 .search-input-group select {
-    border: none;
-    border-left: 1px solid #ddd;
     font-size: 13px;
-    background-color: #fafafa;
     color: #555;
-    max-width: 150px;
+    background-color: #fafafa;
 }
 
 .btn-search-submit {
-    background-color: var(--secondary-color);
-    border: none;
-    color: var(--primary-color);
-    padding: 0 20px;
-    font-weight: bold;
-    border-radius: 0;
+    background-color: var(--accent-yellow) !important;
+    border: none !important;
+    color: var(--primary-teal) !important;
+    padding: 0 28px !important;
+    font-weight: 700 !important;
+    transition: background-color 0.2s ease-in-out;
 }
 
-/* Grid Framework Constraints */
+.btn-search-submit:hover {
+    background-color: #e0a800 !important;
+}
+
+/* ==========================================================================
+   2. HIGH-VISIBILITY HERO SHOWCASE BLOCK (Creative Typography & Dark Backdrop)
+   ========================================================================== */
+.mzansi-premium-hero {
+    background: linear-gradient(180deg, var(--primary-teal) 0%, #061920 100%) !important;
+    padding: 80px 20px !important;
+    color: var(--white) !important;
+    border-bottom: 4px solid var(--accent-orange);
+    text-align: center;
+}
+
+/* Local Badge Element */
+.hero-geo-badge {
+    background: rgba(242, 142, 43, 0.15) !important;
+    border: 1px solid rgba(242, 142, 43, 0.4) !important;
+    color: var(--accent-orange) !important;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-flex;
+}
+
+/* Premium Display Title */
+.hero-headline-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white) !important;
+}
+
+/* Dynamic Multi-Color Gradient Text (Securely. Seamlessly.) */
+.gradient-accent-text {
+    background: linear-gradient(45deg, var(--accent-orange) 0%, var(--accent-yellow) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.hero-body-summary {
+    color: #ced4da !important;
+    font-size: 17px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* --- Dashboard Statistics Sub-Grid --- */
+.stat-giant-number {
+    font-family: 'Syne', sans-serif;
+    color: var(--accent-yellow) !important;
+    font-size: 2.4rem;
+    font-weight: 800;
+}
+
+.stat-sub-label {
+    color: #a0afb7 !important;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   3. PRODUCT SHELF MARKETPLACE GRID
+   ========================================================================== */
 .main-grid-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 15px;
 }
 
-.grid-heading {
+.category-divider-title {
+    font-family: 'Syne', sans-serif;
     font-size: 18px;
     font-weight: 700;
-    color: #333;
-    border-bottom: 2px solid #f4f4f4;
-    padding-bottom: 10px;
+    color: var(--primary-teal);
+    border-bottom: 2px solid var(--border-subtle);
+    padding-bottom: 8px;
 }
 
-/* Product Card Design Block - Clean White Retail Box Model */
 .product-card {
-    background: var(--background-white);
-    border: 1px solid var(--border-gray) !important;
-    border-radius: 4px;
-    text-align: left; /* Explicitly left-aligned like Takealot */
-    transition: box-shadow 0.2s ease-in-out;
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .product-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Proportional Image Box Wrapper Mod */
 .product-image-holder {
     width: 100%;
-    height: 180px; /* Highly optimized default square layout */
-    background-color: #ffffff;
-    border-bottom: 1px solid #f9f9f9;
+    height: 220px;
+    background-color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
-    overflow: hidden;
+    padding: 15px;
+    border-bottom: 1px solid #f1f3f5;
 }
 
 .product-img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Prevents raw imagery distortion */
+    object-fit: contain;
 }
 
-/* Tag Specification Typography Layout */
 .product-title {
-    font-size: 14px;
-    font-weight: 400;
-    color: #333;
-    line-height: 1.4;
-    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .product-location {
-    font-size: 12px;
-    color: var(--text-light-gray);
-    margin: 0;
+    font-size: 13px;
+    color: var(--text-muted);
 }
 
-.product-price {
-    font-size: 18px;
-    font-weight: 700;
-    color: #333;
-}
-
-/* Retail Badge Architecture */
 .badge-verified {
     font-size: 11px;
     font-weight: 600;
@@ -157,174 +201,58 @@ header {
     gap: 4px;
 }
 
-.badge-unverified {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--unverified-red);
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-
-/* Action-Style Flat Button Sets */
+/* ==========================================================================
+   4. LAYOUT ACTION BUTTON RULES
+   ========================================================================== */
 .escrow-btn {
-    background-color: #1c873b; /* Prominent Green Checkout Primary Button */
-    color: #ffffff !important;
+    background-color: var(--accent-yellow) !important;
+    color: var(--primary-teal) !important;
     font-size: 13px;
     font-weight: 700;
-    text-align: center;
-    text-decoration: none;
     border: none;
-    display: block;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(255, 193, 7, 0.2);
+    transition: background-color 0.2s ease;
 }
 
 .escrow-btn:hover {
-    background-color: #15662c;
+    background-color: #e0a800 !important;
 }
 
 .contact-btn {
-    background-color: #f4f4f4; /* Secondary subtle action button */
-    color: #555 !important;
-    font-size: 12px;
+    background-color: var(--white);
+    color: #495057 !important;
+    font-size: 13px;
     font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    display: block;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
 }
 
 .contact-btn:hover {
-    background-color: #eaeaea;
+    background-color: #f1f3f5;
 }
 
-/* Mobile Screen Break Optimizations */
-@media (max-width: 767px) {
-    .main-grid-container {
-        padding: 10px 8px;
-    }
-
-    .grid-heading {
-        font-size: 15px;
-        margin-bottom: 15px;
-    }
-
-    .product-image-holder {
-        height: 130px; /* Perfect square scale down for smaller mobile screens */
-        padding: 6px;
-    }
-
-    .product-title {
-        font-size: 12px;
-    }
-
-    .product-price {
-        font-size: 15px;
-    }
-
-    .escrow-btn, .contact-btn {
-        font-size: 11px;
-        padding: 6px 4px !important;
-    }
-}
 /* ==========================================================================
-   MSANZITRADE FINALIZED NAV STYLES
+   5. RESPONSIVE MEDIA SCALE ADJUSTMENTS
    ========================================================================== */
-
-.msanzi-custom-nav {
-    display: block !important;
-    position: relative !important;
-    background-color: #0b3c4d !important; 
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
-    min-height: 70px !important;
-    width: 100% !important;
-}
-
-.msanzi-nav-container {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    position: relative !important;
-    width: 100% !important;
-}
-
-.msanzi-logo-left {
-    position: absolute !important;
-    left: 15px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 99 !important;
-}
-
-.brand-title-center-override {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    white-space: nowrap !important;
-    z-index: 90 !important;
-}
-
-.brand-title-center-override .logo-text {
-    font-size: 22px !important;
-    font-weight: 800 !important;
-    color: #ffffff !important;
-}
-
-.brand-title-center-override .logo-text span {
-    color: #f28e2b !important;
-}
-
-/* --- Dropdown Menu Refinements --- */
-.msanzi-collapse-target .dropdown-menu {
-    border-top: 3px solid #f28e2b !important;
-    border-radius: 0 0 8px 8px !important;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
-}
-
-/* Ensure menu items have consistent brand-aligned padding and color */
-.msanzi-collapse-target .dropdown-item {
-    color: #0b3c4d !important;
-    font-weight: 500 !important;
-    transition: all 0.2s ease-in-out !important;
-}
-
-/* Hover effect: Subtle orange tint for a premium look */
-.msanzi-collapse-target .dropdown-item:hover {
-    background-color: #fff8f0 !important;
-    color: #0b3c4d !important;
-}
-
-/* Force icons to maintain teal color until hovered */
-.msanzi-collapse-target .dropdown-item i {
-    color: #0b3c4d !important;
-}
-
-/* Logo blend adjustment for the header */
-.logo-blend {
-    mix-blend-mode: multiply !important;
-}
-
-/* Responsive Cleanup */
 @media (max-width: 991px) {
-    .brand-title-center-override .logo-text {
-        font-size: 18px !important;
+    .hero-headline-title {
+        font-size: 3rem;
     }
-    
-    .msanzi-collapse-target {
-        margin-top: 45px !important;
-        background-color: #0b3c4d !important;
-        padding: 15px !important;
-    }
-}
-.msanzi-collapse-target form input {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border: 1px solid #f28e2b !important;
-    border-radius: 4px !important;
 }
 
-.msanzi-collapse-target form button {
-    border: 1px solid #ffffff !important;
-    color: #ffffff !important;
+@media (max-width: 767px) {
+    .hero-headline-title {
+        font-size: 2.2rem;
+    }
+    .mzansi-premium-hero {
+        padding: 60px 15px !important;
+    }
+    .product-image-holder {
+        height: 150px;
+    }
+    .stat-giant-number {
+        font-size: 1.8rem;
+    }
 }

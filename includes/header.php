@@ -57,7 +57,7 @@ include_once 'db_config.php';
                         </a></li>
 
                         <li><a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="#" data-bs-toggle="modal" data-bs-target="#aboutSystemModal" style="color: #0b3c4d; font-size: 14px;">
-                            <i class="bi bi-info-circle fs-5" style="color: #0b3c4d;"></i>About MsanziTrade
+                            <i class="bi bi-info-circle fs-5" style="color: #0b3c4d;"></i>About MzansiTrade
                         </a></li>
                         
                         <li><hr class="dropdown-divider my-0" style="border-top: 1px solid #e0e0e0; opacity: 1;"></li>
@@ -86,15 +86,15 @@ include_once 'db_config.php';
         <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
             <div class="modal-header border-0 bg-success text-white py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px; background-color: #0b3c4d !important;">
                 <h5 class="modal-title fw-bold" id="aboutSystemModalLabel">
-                    <i class="bi bi-info-circle-fill me-2"></i>About MsanziTrade
+                    <i class="bi bi-info-circle-fill me-2"></i>About MzansiTrade
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center p-4">
-                <img src="img/logo.jpeg" alt="MsanziTrade Logo" class="mb-3" style="width: 80px; height: 80px; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='https://via.placeholder.com/80x80?text=Logo'">
-                <h4 class="fw-bold mb-2" style="color: #0b3c4d;">MsanziTrade</h4>
+                <img src="img/logo.jpeg" alt="MzansiTrade Logo" class="mb-3" style="width: 80px; height: 80px; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='https://via.placeholder.com/80x80?text=Logo'">
+                <h4 class="fw-bold mb-2" style="color: #0b3c4d;">MzansiTrade</h4>
                 <p class="text-secondary small mb-0" style="line-height: 1.6;">
-                    MsanziTrade is a creative C-2-C marketplace dedicated to empowering local informal traders across Cape Town townships. Our integrated smart escrow architecture secures transaction cash safely until products are checked face-to-face, providing safe street-level commerce options completely free of scams.
+                    MzansiTrade is a creative C-2-C marketplace dedicated to empowering local informal traders across Cape Town townships. Our integrated smart escrow architecture secures transaction cash safely until products are checked face-to-face, providing safe street-level commerce options completely free of scams.
                 </p>
             </div>
             <div class="modal-footer border-0 justify-content-center pb-4">
