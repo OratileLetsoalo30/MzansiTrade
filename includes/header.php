@@ -2,18 +2,25 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include_once 'db_config.php'; // Ensure this path is correct based on where header.php is placed
+include_once 'db_config.php'; 
+
+// ==========================================
+// THE FIX: Define your base project path here
+// If your URL is localhost/mzansitrade/index.php, keep it as '/mzansitrade'
+// If your URL is just localhost/index.php, change it to '' (blank)
+// ==========================================
+$base_url = '/mzansitrade'; 
 ?>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="<?php echo $base_url; ?>/mzansitrade/assets/css/style.css">
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm py-3 msanzi-custom-nav" style="background-color: #0b3c4d;">
     <div class="container-fluid position-relative msanzi-nav-container" style="width: 100%;">
         
-        <a class="navbar-brand d-flex align-items-center position-absolute msanzi-logo-left" href="/index.php" style="left: 15px; top: 50%; transform: translateY(-50%); margin: 0; padding: 0; z-index: 10;">
-            <img src="/assets/img/logo.jpeg" alt="Mzansi Trade Logo" class="logo-blend" style="height: 50px; width: auto; mix-blend-mode: multiply;" onerror="this.src='https://via.placeholder.com/150x50?text=Logo'">
+        <a class="navbar-brand d-flex align-items-center position-absolute msanzi-logo-left" href="<?php echo $base_url; ?>/index.php" style="left: 15px; top: 50%; transform: translateY(-50%); margin: 0; padding: 0; z-index: 10;">
+            <img src="<?php echo $base_url; ?>/assets/img/logo.jpeg" alt="Mzansi Trade Logo" class="logo-blend" style="height: 50px; width: auto; mix-blend-mode: multiply;">
         </a>
 
         <div class="brand-title-center-override position-absolute" style="left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; white-space: nowrap; z-index: 5;">
@@ -46,34 +53,46 @@ include_once 'db_config.php'; // Ensure this path is correct based on where head
                         <?php echo htmlspecialchars($_SESSION['username'] ?? 'Mzansi User'); ?>
                     </span>
 
-                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-0" aria-labelledby="userDropdown" style="width: 240px; border-radius: 8px; border-top: 4px solid #f28e2b !important;">
-                        
-                        <li><a class="dropdown-item py-2 d-flex align-items-center gap-3 mt-1" href="/pages/profile.php" style="color: #0b3c4d; font-size: 15px;">
-                            <i class="bi bi-person-gear fs-5" style="color: #0b3c4d;"></i>Profile Settings
-                        </a></li> 
-                        
-                        <li><a class="dropdown-item py-2 d-flex align-items-center gap-3" href="/index.php" style="color: #0b3c4d; font-size: 15px;">
-                            <i class="bi bi-house fs-5" style="color: #0b3c4d;"></i>Home
-                        </a></li>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-0 rounded-0" aria-labelledby="userDropdown" style="width: 240px; border-top: 3px solid #f28e2b !important;">
+    
+    <li>
+        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/pages/profile.php" style="color: #0b3c4d; font-size: 14px;">
+            <i class="bi bi-person-gear fs-5" style="color: #0b3c4d;"></i>Profile Settings
+        </a>
+    </li> 
 
-                        <li><a class="dropdown-item py-2 d-flex align-items-center gap-3 mb-1" href="#" data-bs-toggle="modal" data-bs-target="#aboutSystemModal" style="color: #0b3c4d; font-size: 15px;">
-                            <i class="bi bi-info-circle fs-5" style="color: #0b3c4d;"></i>About MzansiTrade
-                        </a></li>
-                        
-                        <li><hr class="dropdown-divider my-0" style="border-top: 1px solid #e0e0e0; opacity: 1;"></li>
+    <li>
+        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/index.php" style="color: #0b3c4d; font-size: 14px;">
+            <i class="bi bi-house-door fs-5" style="color: #0b3c4d;"></i>Home
+        </a>
+    </li>
 
-                        <li><a class="dropdown-item py-3 d-flex align-items-center gap-3" href="/seller/sell%20item.php" style="color: #0b3c4d; font-size: 15px;">
-                             <i class="bi bi-plus-circle fs-5" style="color: #f28e2b;"></i>Sell Item
-                        </a></li>
+    <li>
+        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="#" data-bs-toggle="modal" data-bs-target="#aboutSystemModal" style="color: #0b3c4d; font-size: 14px;">
+            <i class="bi bi-info-circle fs-5" style="color: #0b3c4d;"></i>About MzansiTrade
+        </a>
+    </li>
+    
+    <li><hr class="dropdown-divider my-0" style="border-top: 1px solid #e0e0e0; opacity: 1;"></li>
 
-                        <li><a class="dropdown-item py-2 d-flex align-items-center gap-3 mb-1" href="/auth/register.php" style="color: #0b3c4d; font-size: 15px;">
-                            <i class="bi bi-person-plus fs-5" style="color: #0b3c4d;"></i>Register Account
-                        </a></li>
+    <li>
+        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/seller/sell_item.php" style="color: #0b3c4d; font-size: 14px;">
+             <i class="bi bi-plus-circle fs-5" style="color: #f28e2b;"></i>Sell Item
+        </a>
+    </li>
 
-                        <li><a class="dropdown-item py-3 d-flex align-items-center gap-3" href="/auth/logout.php" style="color: #d9534f; font-size: 15px; background-color: #fff6f5; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
-                            <i class="bi bi-box-arrow-right fs-5" style="color: #d9534f;"></i>Log Out
-                        </a></li>
-                    </ul>
+    <li>
+        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/auth/register.php" style="color: #0b3c4d; font-size: 14px;">
+            <i class="bi bi-person-plus fs-5" style="color: #0b3c4d;"></i>Register Account
+        </a>
+    </li>
+
+    <li>
+        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/auth/logout.php" style="color: #d93f3f; font-size: 14px; background-color: #fff5f5;">
+            <i class="bi bi-box-arrow-right fs-5" style="color: #d93f3f;"></i>Log Out
+        </a>
+    </li>
+</ul>
                 </div>
 
             </div>
@@ -91,7 +110,7 @@ include_once 'db_config.php'; // Ensure this path is correct based on where head
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center p-4">
-                <img src="/assets/img/logo.jpeg" alt="MzansiTrade Logo" class="mb-3" style="width: 80px; height: 80px; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='https://via.placeholder.com/80x80?text=Logo'">
+                <img src="<?php echo $base_url; ?>/assets/img/logo.jpeg" alt="MzansiTrade Logo" class="mb-3" style="width: 80px; height: 80px; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='https://via.placeholder.com/80x80?text=Logo'">
                 <h4 class="fw-bold mb-2" style="color: #0b3c4d;">MzansiTrade</h4>
                 <p class="text-secondary small mb-0" style="line-height: 1.6;">
                     MzansiTrade is a creative C-2-C marketplace dedicated to empowering local informal traders across Cape Town townships. Our integrated smart escrow architecture secures transaction cash safely until products are checked face-to-face, providing safe street-level commerce options completely free of scams.
