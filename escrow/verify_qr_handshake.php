@@ -1,82 +1,188 @@
 <?php
 session_start();
-include 'db_config.php';
+include '../db_config.php';
+include '../auth/auth_check.php';
+include 'escrow_config.php';
 
-if (!isset($_SESSION['user_id'])) {
-    die("Unauthorized access.");
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'error' => 'Method not allowed']);
+    exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['qr_hash'])) {
-    $raw_payload = $_POST['qr_hash'];
-    $buyer_id = $_SESSION['user_id'];
-    
-    
-    $payload_parts = explode('|', $raw_payload);
-    if (count($payload_parts) !== 2) {
-        die("Verification Failed: Corrupted or invalid QR payload structure.");
+if (!isset($_POST['hash']) || !isset($_POST['qr_token'])) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Missing hash or QR token']);
+    exit();
+}
+
+$hash = mysqli_real_escape_string($conn, $_POST['hash']);
+$qr_token = mysqli_real_escape_string($conn, $_POST['qr_token']);
+$user_id = $uid; // From auth_check.php
+$user_role = null; // Will determine if buyer or seller
+
+try {
+    // ===== GET TRANSACTION =====
+    $trans_stmt = $conn->prepare("
+        SELECT id, buyer_id, seller_id, status, escrow_flow, unique_hash, escrow_amount, item_id
+        FROM transactions 
+        WHERE unique_hash = ?
+        LIMIT 1
+    ");
+    $trans_stmt->bind_param("s", $hash);
+    $trans_stmt->execute();
+    $trans_result = $trans_stmt->get_result();
+
+    if ($trans_result->num_rows === 0) {
+        throw new Exception("Transaction not found.");
     }
-    
-    $scanned_hash = mysqli_real_escape_string($conn, $payload_parts[0]);
-    $scanned_token = $payload_parts[1];
-    
-    
-    $secret_salt = "MKasiSecureSystem2026";
-    $current_window = floor(time() / 60);
-    
-    $valid_token_current = hash_hmac('sha256', $scanned_hash . $current_window, $secret_salt);
-    $valid_token_previous = hash_hmac('sha256', $scanned_hash . ($current_window - 1), $secret_salt);
-    
-    if ($scanned_token !== $valid_token_current && $scanned_token !== $valid_token_previous) {
-        die("Verification Failed: The scanned QR code has expired. Please ask the seller to present a fresh screen.");
+
+    $transaction = $trans_result->fetch_assoc();
+    $trans_stmt->close();
+
+    $transaction_id = $transaction['id'];
+
+    // ===== DETERMINE USER ROLE =====
+    if ($user_id == $transaction['buyer_id']) {
+        $user_role = 'buyer';
+    } elseif ($user_id == $transaction['seller_id']) {
+        $user_role = 'seller';
+    } else {
+        throw new Exception("You are not authorized for this transaction.");
     }
 
+    // ===== VERIFY QR TOKEN =====
+    // Token should be: hash|security_token
+    if (strpos($qr_token, '|') === false) {
+        throw new Exception("Invalid QR format.");
+    }
 
-    $check_query = "SELECT * FROM transactions 
-                    WHERE unique_hash = '$scanned_hash' 
-                    AND buyer_id = '$buyer_id' 
-                    AND status = 'escrow' 
-                    LIMIT 1";
-    $result = mysqli_query($conn, $check_query);
+    list($token_hash, $token_signature) = explode('|', $qr_token, 2);
 
-    if (mysqli_num_rows($result) === 1) {
-        $transaction = mysqli_fetch_assoc($result);
-        $item_id = $transaction['item_id'];
+    if ($token_hash !== $hash) {
+        throw new Exception("QR code hash mismatch.");
+    }
 
+    if (!verifyEscrowToken($hash, $token_signature, 2)) {
+        throw new Exception("QR code has expired or is invalid. Please request a new QR code.");
+    }
+
+    // ===== CHECK TRANSACTION STATUS =====
+    // Allow verification if:
+    // - flow is payment_first and status is awaiting_handshake
+    // - flow is qr_first and status is awaiting_handshake
+    
+    if (!in_array($transaction['status'], [
+        ESCROW_STATUS_AWAITING_HANDSHAKE,
+        ESCROW_STATUS_HANDSHAKE_VERIFIED,
+        ESCROW_STATUS_AWAITING_CONFIRMATION
+    ])) {
+        throw new Exception("Transaction status does not allow QR verification.");
+    }
+
+    // ===== UPDATE VERIFICATION STATUS =====
+    $conn->begin_transaction();
+
+    if ($user_role === 'buyer') {
+        // Buyer verified QR
+        $verify_stmt = $conn->prepare("
+            UPDATE transactions 
+            SET qr_verified = 1,
+                updated_at = NOW()
+            WHERE id = ?
+        ");
+        $verify_stmt->bind_param("i", $transaction_id);
+        $verify_stmt->execute();
+        $verify_stmt->close();
+
+        $action = 'buyer_qr_verified';
         
-        mysqli_begin_transaction($conn);
+    } else {
+        // Seller confirmed QR
+        $confirm_stmt = $conn->prepare("
+            UPDATE transactions 
+            SET seller_confirmed = 1,
+                updated_at = NOW()
+            WHERE id = ?
+        ");
+        $confirm_stmt->bind_param("i", $transaction_id);
+        $confirm_stmt->execute();
+        $confirm_stmt->close();
 
-        try {
-            $lock_check = mysqli_query($conn, "SELECT status FROM transactions WHERE id = '{$transaction['id']}' FOR UPDATE");
-            $current_state = mysqli_fetch_assoc($lock_check);
-            
-            if ($current_state['status'] !== 'escrow') {
-                throw new Exception("Transaction has already been processed or closed.");
-            }
+        $action = 'seller_qr_confirmed';
+    }
 
-            
-            $update_tx = "UPDATE transactions SET status = 'completed' WHERE id = '{$transaction['id']}'";
-            mysqli_query($conn, $update_tx);
+    // ===== CHECK IF BOTH HAVE VERIFIED =====
+    $check_stmt = $conn->prepare("
+        SELECT qr_verified, seller_confirmed 
+        FROM transactions 
+        WHERE id = ?
+    ");
+    $check_stmt->bind_param("i", $transaction_id);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();
+    $verification_status = $check_result->fetch_assoc();
+    $check_stmt->close();
 
-            
-            $update_product = "UPDATE products SET status = 'sold' WHERE id = '$item_id'";
-            mysqli_query($conn, $update_product);
+    $both_verified = $verification_status['qr_verified'] && $verification_status['seller_confirmed'];
 
-            
-            mysqli_commit($conn);
-
-            header("Location: dashboard.php?status=success");
-            exit();
-
-        } catch (Exception $e) {
-            mysqli_rollback($conn);
-            die("Cryptographic Handshake Interrupted: " . $e->getMessage());
+    // ===== UPDATE STATUS IF BOTH VERIFIED =====
+    if ($both_verified) {
+        // For payment_first: move to awaiting_confirmation
+        // For qr_first: payment needs to be processed now
+        
+        if ($transaction['escrow_flow'] === ESCROW_FLOW_PAYMENT_FIRST) {
+            $new_status = ESCROW_STATUS_AWAITING_CONFIRMATION;
+        } else {
+            $new_status = ESCROW_STATUS_PAYMENT_PENDING;
         }
 
+        $status_stmt = $conn->prepare("
+            UPDATE transactions 
+            SET status = ?
+            WHERE id = ?
+        ");
+        $status_stmt->bind_param("si", $new_status, $transaction_id);
+        $status_stmt->execute();
+        $status_stmt->close();
     } else {
-        die("Verification Failed: You are not authorized to release funds for this product.");
+        $new_status = ESCROW_STATUS_HANDSHAKE_VERIFIED;
     }
-} else {
-    header("Location: dashboard.php");
-    exit();
+
+    // ===== LOG ACTION =====
+    logEscrowAction($conn, $transaction_id, $action, $user_id, [
+        'user_role' => $user_role,
+        'both_verified' => $both_verified
+    ]);
+
+    $conn->commit();
+
+    echo json_encode([
+        'success' => true,
+        'message' => 'QR verification successful',
+        'transaction_id' => $transaction_id,
+        'user_role' => $user_role,
+        'qr_verified' => $verification_status['qr_verified'],
+        'seller_confirmed' => $verification_status['seller_confirmed'],
+        'both_verified' => $both_verified,
+        'next_status' => $new_status,
+        'flow_type' => $transaction['escrow_flow'],
+        'next_action' => $both_verified 
+            ? ($transaction['escrow_flow'] === ESCROW_FLOW_PAYMENT_FIRST ? 'release_funds' : 'process_payment')
+            : 'waiting_for_other_party'
+    ]);
+
+} catch (Exception $e) {
+    if ($conn->inTransaction()) {
+        $conn->rollback();
+    }
+    
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'error' => $e->getMessage()
+    ]);
 }
 ?>
