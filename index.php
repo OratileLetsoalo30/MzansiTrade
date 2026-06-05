@@ -192,8 +192,8 @@ $_SESSION['splash_shown'] = true;
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Khayelitsha</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R1 000</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item=1" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="#" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="checkout.php?item_id=1" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Black%20Steve%20Madden%20heels%20listed%20in%20Khayelitsha%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -210,8 +210,8 @@ $_SESSION['splash_shown'] = true;
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Gugulethu</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R2 400</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item=2" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="#" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="checkout.php?item_id=2" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Nike%20Retro%20J4%20Sneaker%20listed%20in%20Gugulethu%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -233,8 +233,8 @@ $_SESSION['splash_shown'] = true;
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Nyanga</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R700</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item=3" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="#" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="checkout.php?item_id=3" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20JBL%20Bluetooth%20Speaker%20listed%20in%20Nyanga%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -251,8 +251,8 @@ $_SESSION['splash_shown'] = true;
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Langa</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R11 500</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item=5" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="#" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="checkout.php?item_id=5" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20iPhone%2013%20Pro%20Max%20256GB%20listed%20in%20Langa%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -274,8 +274,8 @@ $_SESSION['splash_shown'] = true;
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Ottery</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R3 200</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item=4" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="#" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="checkout.php?item_id=4" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%2028%22%2013x4%20Lace%20Front%20Wig%20listed%20in%20Ottery%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -292,8 +292,8 @@ $_SESSION['splash_shown'] = true;
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Delft</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R1 800</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item=6" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="#" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="checkout.php?item_id=6" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%203x%2024%22%20Brazilian%20Hair%20Bundles%20%2B%20Closure%20listed%20in%20Delft%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -301,68 +301,7 @@ $_SESSION['splash_shown'] = true;
 
         </div>
     </div>
-    <div class="modal fade" id="escrowFlowModal" tabindex="-1" aria-labelledby="escrowFlowLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content escrow-modal-content">
-            <div class="modal-header escrow-modal-header">
-                <h5 class="modal-title" id="escrowFlowLabel">
-                    <i class="bi bi-shield-lock"></i> Choose Payment Flow
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body escrow-modal-body">
-                <!-- Item Summary -->
-                <div class="item-summary">
-                    <div class="item-summary-name" id="modalItemName">Item Name</div>
-                    <div class="item-summary-price">R <span id="modalItemPrice">0.00</span></div>
-                </div>
-
-                <!-- Payment Flow Options -->
-                <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
-                    <i class="bi bi-info-circle"></i> Select how you'd like to complete this transaction
-                </p>
-
-                <!-- Flow Option 1: Pay First -->
-                <div class="flow-option" onclick="selectFlow('payment_first', this)">
-                    <span class="flow-icon">💳</span>
-                    <div class="flow-title">Pay Now</div>
-                    <p class="flow-description">
-                        Pay immediately → Meet & Verify → Transaction Complete
-                    </p>
-                </div>
-
-                <!-- Flow Option 2: QR First -->
-                <div class="flow-option" onclick="selectFlow('qr_first', this)">
-                    <span class="flow-icon">🔐</span>
-                    <div class="flow-title">QR Code First</div>
-                    <p class="flow-description">
-                        Meet & Verify → Pay → Transaction Complete
-                    </p>
-                </div>
-
-                <!-- Info Box -->
-                <div style="background: rgba(11, 60, 77, 0.1); border-left: 4px solid #0B3C4D; padding: 12px; border-radius: 6px; margin-top: 20px;">
-                    <p style="margin: 0; font-size: 12px; color: #0B3C4D;">
-                        <i class="bi bi-shield-check"></i> <strong>Both flows are secure.</strong> 
-                        Your funds are held safely in escrow until both parties confirm the transaction.
-                    </p>
-                </div>
-            </div>
-            <div class="modal-footer escrow-modal-footer">
-                <button type="button" class="btn-escrow-cancel" data-bs-dismiss="modal">
-                    Cancel
-                </button>
-                <button type="button" class="btn-escrow-confirm" id="confirmFlowBtn" disabled>
-                    <span class="escrow-spinner" id="flowSpinner">
-                        <span class="spinner-border spinner-border-sm"></span>
-                    </span>
-                    <span id="confirmBtnText">Proceed to Escrow</span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
+    
     <?php include 'includes/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
