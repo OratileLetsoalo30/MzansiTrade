@@ -2,25 +2,25 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include_once '../config/db.php'; 
 
-// ==========================================
-// THE FIX: Define your base project path here
-// If your URL is localhost/mzansitrade/index.php, keep it as '/mzansitrade'
-// If your URL is just localhost/index.php, change it to '' (blank)
-// ==========================================
-$base_url = '/mzansitrade'; 
+//AUTOMATIC PATH DIRECTOR: checks if the current page is inside a subfolder 
+$current_dir = basename(dirname($_SERVER["SCRIPT_NAME"]));
+if (in_array($current_dir, ['pages', 'seller', 'auth', 'includes', 'config'])) {
+    $path_prefix = '../';
+} else {
+    $path_prefix = './';
+}
 ?>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link rel="stylesheet" href="<?php echo $base_url; ?>/mzansitrade/assets/css/style.css">
+<link rel="stylesheet" href="<?php echo $path_prefix; ?>assets/css/style.css">
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm py-3 msanzi-custom-nav" style="background-color: #0b3c4d;">
     <div class="container-fluid position-relative msanzi-nav-container" style="width: 100%;">
         
-        <a class="navbar-brand d-flex align-items-center position-absolute msanzi-logo-left" href="<?php echo $base_url; ?>/index.php" style="left: 15px; top: 50%; transform: translateY(-50%); margin: 0; padding: 0; z-index: 10;">
-            <img src="<?php echo $base_url; ?>/assets/img/logo.jpeg" alt="Mzansi Trade Logo" class="logo-blend" style="height: 50px; width: auto; mix-blend-mode: multiply;">
+        <a class="navbar-brand d-flex align-items-center position-absolute msanzi-logo-left" href="<?php echo $path_prefix; ?>index.php" style="left: 15px; top: 50%; transform: translateY(-50%); margin: 0; padding: 0; z-index: 10;">
+            <img src="<?php echo $path_prefix; ?>assets/img/logo.jpeg" alt="Mzansi Trade Logo" class="logo-blend" style="height: 50px; width: auto; mix-blend-mode: multiply;">
         </a>
 
         <div class="brand-title-center-override position-absolute" style="left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; white-space: nowrap; z-index: 5;">
@@ -55,44 +55,44 @@ $base_url = '/mzansitrade';
 
                     <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-0 rounded-0" aria-labelledby="userDropdown" style="width: 240px; border-top: 3px solid #f28e2b !important;">
     
-    <li>
-        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>../pages/profile.php" style="color: #0b3c4d; font-size: 14px;">
-            <i class="bi bi-person-gear fs-5" style="color: #0b3c4d;"></i>Profile Settings
-        </a>
-    </li> 
+                        <li>
+                            <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $path_prefix; ?>pages/profile.php" style="color: #0b3c4d; font-size: 14px;">
+                                <i class="bi bi-person-gear fs-5" style="color: #0b3c4d;"></i>Profile Settings
+                            </a>
+                        </li> 
 
-    <li>
-        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/index.php" style="color: #0b3c4d; font-size: 14px;">
-            <i class="bi bi-house-door fs-5" style="color: #0b3c4d;"></i>Home
-        </a>
-    </li>
+                        <li>
+                            <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $path_prefix; ?>index.php" style="color: #0b3c4d; font-size: 14px;">
+                                <i class="bi bi-house-door fs-5" style="color: #0b3c4d;"></i>Home
+                            </a>
+                        </li>
 
-    <li>
-        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="#" data-bs-toggle="modal" data-bs-target="#aboutSystemModal" style="color: #0b3c4d; font-size: 14px;">
-            <i class="bi bi-info-circle fs-5" style="color: #0b3c4d;"></i>About MzansiTrade
-        </a>
-    </li>
-    
-    <li><hr class="dropdown-divider my-0" style="border-top: 1px solid #e0e0e0; opacity: 1;"></li>
+                        <li>
+                            <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="#" data-bs-toggle="modal" data-bs-target="#aboutSystemModal" style="color: #0b3c4d; font-size: 14px;">
+                                <i class="bi bi-info-circle fs-5" style="color: #0b3c4d;"></i>About MzansiTrade
+                            </a>
+                        </li>
+                        
+                        <li><hr class="dropdown-divider my-0" style="border-top: 1px solid #e0e0e0; opacity: 1;"></li>
 
-    <li>
-        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/seller/sell_item.php" style="color: #0b3c4d; font-size: 14px;">
-             <i class="bi bi-plus-circle fs-5" style="color: #f28e2b;"></i>Sell Item
-        </a>
-</li>
+                        <li>
+                            <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $path_prefix; ?>seller/sell_item.php" style="color: #0b3c4d; font-size: 14px;">
+                                 <i class="bi bi-plus-circle fs-5" style="color: #f28e2b;"></i>Sell Item
+                            </a>
+                        </li>
 
-    <li>
-        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/auth/register.php" style="color: #0b3c4d; font-size: 14px;">
-            <i class="bi bi-person-plus fs-5" style="color: #0b3c4d;"></i>Register Account
-        </a>
-    </li>
+                        <li>
+                            <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $path_prefix; ?>auth/register.php" style="color: #0b3c4d; font-size: 14px;">
+                                <i class="bi bi-person-plus fs-5" style="color: #0b3c4d;"></i>Register Account
+                            </a>
+                        </li>
 
-    <li>
-        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/auth/logout.php" style="color: #d93f3f; font-size: 14px; background-color: #fff5f5;">
-            <i class="bi bi-box-arrow-right fs-5" style="color: #d93f3f;"></i>Log Out
-        </a>
-    </li>
-</ul>
+                        <li>
+                            <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $path_prefix; ?>auth/logout.php" style="color: #d93f3f; font-size: 14px; background-color: #fff5f5;">
+                                <i class="bi bi-box-arrow-right fs-5" style="color: #d93f3f;"></i>Log Out
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
@@ -110,7 +110,7 @@ $base_url = '/mzansitrade';
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center p-4">
-                <img src="<?php echo $base_url; ?>/assets/img/logo.jpeg" alt="MzansiTrade Logo" class="mb-3" style="width: 80px; height: 80px; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='https://via.placeholder.com/80x80?text=Logo'">
+                <img src="<?php echo $path_prefix; ?>assets/img/logo.jpeg" alt="MzansiTrade Logo" class="mb-3" style="width: 80px; height: 80px; object-fit: contain; mix-blend-mode: multiply;" onerror="this.src='https://via.placeholder.com/80x80?text=Logo'">
                 <h4 class="fw-bold mb-2" style="color: #0b3c4d;">MzansiTrade</h4>
                 <p class="text-secondary small mb-0" style="line-height: 1.6;">
                     MzansiTrade is a creative C-2-C marketplace dedicated to empowering local informal traders across Cape Town townships. Our integrated smart escrow architecture secures transaction cash safely until products are checked face-to-face, providing safe street-level commerce options completely free of scams.
