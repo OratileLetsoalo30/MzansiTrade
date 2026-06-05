@@ -1,12 +1,14 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
 $showSplash = !isset($_SESSION['splash_shown']);
 $_SESSION['splash_shown'] = true;
 ?>
-<?php if ($showSplash): ?>
-    <?php include 'splash.php'; exit; ?>
-    
-<?php endif; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,13 +108,12 @@ $_SESSION['splash_shown'] = true;
     <div class="spinner-border" style="color: #ffc107; width: 3rem; height: 3rem;" role="status"></div>
 </div>
 <script>
-    
     window.addEventListener('load', function() {
         const splash = document.getElementById('splash-screen');
         setTimeout(() => {
             splash.style.opacity = '0';
             setTimeout(() => { splash.style.display = 'none'; }, 600);
-        }, 5000); // Stays for 5 seconds
+        }, 5000);
     });
 </script>
 <?php endif; ?>
@@ -247,12 +248,12 @@ $_SESSION['splash_shown'] = true;
                     </div>
                     <div class="card-body d-flex flex-column p-3">
                         <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
-                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">iPhone 13 Pro Max 256GB</h6>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">iPhone 17 Pro Max 256GB</h6>
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Langa</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R11 500</h5>
                         <div class="mt-auto row g-2">
                             <div class="col-12"><a href="checkout.php?item_id=5" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20iPhone%2013%20Pro%20Max%20256GB%20listed%20in%20Langa%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20iPhone%2017%20Pro%20Max%20256GB%20listed%20in%20Langa%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -288,7 +289,7 @@ $_SESSION['splash_shown'] = true;
                     </div>
                     <div class="card-body d-flex flex-column p-3">
                         <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
-                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">3x 24" Brazilian Hair Bundles + Closure </h6>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">3 x 24" Brazilian Hair Bundles (straight)+ Closure </h6>
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Delft</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R1 800</h5>
                         <div class="mt-auto row g-2">

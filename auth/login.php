@@ -1,6 +1,8 @@
 <?php
 session_start();
-include 'db_config.php';
+require_once '../db_config.php';
+
+$error_msg = "";
 
 if (isset($_POST['login_btn'])) {
     $uname = mysqli_real_escape_string($conn, $_POST['username']);
@@ -9,30 +11,23 @@ if (isset($_POST['login_btn'])) {
     $query = "SELECT * FROM users WHERE username='$uname'";
     $run   = mysqli_query($conn, $query);
     
-    if (mysqli_num_rows($run) > 0) {
+    if ($run && mysqli_num_rows($run) > 0) {
         $user = mysqli_fetch_assoc($run);
         
-        if (password_verify($pass, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
+        if (password_verify($pass, $user['password_hash'])) {
+            $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
-            $_SESSION['role']    = $user['role'];
             
-            if ($user['role'] == 'Admin') {
-                header("Location: dashboard.php");
-                exit();
-            } else {
-                header("Location: index.php");
-                exit();
-            }
+            header("Location: index.php");
+            exit();
         } else {
-           echo "<script>alert('" . ($words['err_pass'] ?? 'Incorrect Password') . "');</script>";
+            $error_msg = "Incorrect Password";
         }
     } else {
-        echo "<script>alert('" . ($words['err_user'] ?? 'User not found') . "');</script>";
+        $error_msg = "User not found";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +58,10 @@ if (isset($_POST['login_btn'])) {
             <div class="col-md-4">
                 <div class="card p-4">
                     <div class="card-body">
+                        <?php if (!empty($error_msg)): ?>
+                            <div class="alert alert-danger"><?php echo $error_msg; ?></div>
+                        <?php endif; ?>
+
                         <h3 class="text-center mb-4 fw-bold"><?php echo $words['login_title'] ?? 'Login'; ?></h3>
                         
                         <form method="POST">

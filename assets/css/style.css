@@ -408,3 +408,44 @@ body {
     padding-left: 20px;
     padding-right: 20px;
 }
+/* ==========================================================================
+   9. ESCROW TRANSACTION SYSTEM UI
+   ========================================================================== */
+
+/* The card style used for payment success/failure messages */
+.escrow-success-card {
+    background: var(--white);
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    padding: 40px !important;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+/* Escrow Badge for Profile/Transaction tables */
+.badge-escrow-pending {
+    background-color: rgba(242, 142, 43, 0.1);
+    color: var(--accent-orange);
+    border: 1px solid var(--accent-orange);
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Specific styling for the reference ID box in the success card */
+.escrow-ref-box {
+    background-color: #f8f9fa;
+    border: 1px solid var(--border-subtle);
+    padding: 15px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.escrow-ref-box strong {
+    color: var(--primary-teal);
+    font-family: 'Syne', sans-serif;
+}
