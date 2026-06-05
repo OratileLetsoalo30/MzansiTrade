@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 include '../config/db.php';
 
@@ -19,7 +22,7 @@ $uid = $_SESSION['user_id'];
 if (!isset($is_verified)) {
     // Note: Used 'seller_id' logic if your users table uses it, 
     // or standard 'id' if that is your primary key.
-    $user_check_res = mysqli_query($conn, "SELECT is_verified FROM users WHERE id = '$uid'");
+    $user_check_res = mysqli_query($conn, "SELECT is_verified FROM users WHERE user_id = '$uid'");
     $user_check_data = mysqli_fetch_assoc($user_check_res);
     $is_verified = $user_check_data['is_verified'] ?? 0;
 }

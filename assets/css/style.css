@@ -449,3 +449,36 @@ body {
     color: var(--primary-teal);
     font-family: 'Syne', sans-serif;
 }
+/* Branding Colors */
+:root {
+    --primary-teal: #0b3c4d;
+    --accent-orange: #f28e2b;
+    --white: #ffffff;
+    --light-bg: #f8f9fa;
+}
+
+/* Card Styling for all pages */
+.card {
+    border-radius: 16px !important;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Button & Text consistent with branding */
+.btn-primary {
+    background-color: var(--primary-teal) !important;
+    border: none !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-orange) !important;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--primary-teal) !important;
+}
