@@ -408,3 +408,170 @@ body {
     padding-left: 20px;
     padding-right: 20px;
 }
+/* MzansiTrade Escrow Button Styles */
+    .btn-escrow {
+        background: linear-gradient(135deg, #FFA500, #ffb81c) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 12px 24px !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2) !important;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .btn-escrow:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(255, 165, 0, 0.4) !important;
+        background: linear-gradient(135deg, #ffb81c, #FFA500) !important;
+        color: white !important;
+    }
+
+    .btn-escrow:active {
+        transform: translateY(0) !important;
+    }
+
+    /* Escrow Flow Modal Styles */
+    .escrow-modal-content {
+        border: none !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .escrow-modal-header {
+        background: linear-gradient(135deg, #0B3C4D, #163d4f) !important;
+        color: white !important;
+        border: none !important;
+        padding: 30px !important;
+    }
+
+    .escrow-modal-header h5 {
+        font-weight: 700 !important;
+        margin: 0 !important;
+        font-size: 24px !important;
+    }
+
+    .escrow-modal-body {
+        padding: 30px !important;
+        background: #f8f9fa !important;
+    }
+
+    .flow-option {
+        background: white !important;
+        border: 2px solid #ddd !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+        margin-bottom: 15px !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        text-align: center !important;
+    }
+
+    .flow-option:hover {
+        border-color: #FFA500 !important;
+        box-shadow: 0 8px 20px rgba(255, 165, 0, 0.2) !important;
+        transform: translateY(-4px) !important;
+    }
+
+    .flow-option.selected {
+        border-color: #FFA500 !important;
+        background: rgba(255, 165, 0, 0.05) !important;
+    }
+
+    .flow-icon {
+        font-size: 32px !important;
+        margin-bottom: 10px !important;
+        display: block !important;
+    }
+
+    .flow-title {
+        font-weight: 600 !important;
+        color: #0B3C4D !important;
+        margin-bottom: 8px !important;
+        font-size: 16px !important;
+    }
+
+    .flow-description {
+        font-size: 13px !important;
+        color: #666 !important;
+        margin: 0 !important;
+    }
+
+    .escrow-modal-footer {
+        background: #f8f9fa !important;
+        border-top: 1px solid #dee2e6 !important;
+        padding: 20px !important;
+    }
+
+    .btn-escrow-confirm {
+        background: linear-gradient(135deg, #FFA500, #ffb81c) !important;
+        color: white !important;
+        border: none !important;
+        padding: 12px 30px !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .btn-escrow-confirm:hover:not(:disabled) {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 10px 25px rgba(255, 165, 0, 0.4) !important;
+        background: linear-gradient(135deg, #ffb81c, #FFA500) !important;
+        color: white !important;
+    }
+
+    .btn-escrow-confirm:disabled {
+        opacity: 0.5 !important;
+        cursor: not-allowed !important;
+    }
+
+    .btn-escrow-cancel {
+        background: #f0f0f0 !important;
+        color: #666 !important;
+        border: none !important;
+        padding: 12px 30px !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .btn-escrow-cancel:hover {
+        background: #e0e0e0 !important;
+        color: #333 !important;
+    }
+
+    .escrow-spinner {
+        display: none;
+        margin-right: 8px;
+    }
+
+    .item-summary {
+        background: white !important;
+        border: 1px solid #ddd !important;
+        border-radius: 8px !important;
+        padding: 15px !important;
+        margin-bottom: 20px !important;
+        border-left: 4px solid #FFA500 !important;
+    }
+
+    .item-summary-name {
+        font-weight: 600 !important;
+        color: #0B3C4D !important;
+        margin-bottom: 8px !important;
+    }
+
+    .item-summary-price {
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        color: #FFA500 !important;
+    }

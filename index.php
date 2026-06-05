@@ -5,6 +5,7 @@ $_SESSION['splash_shown'] = true;
 ?>
 <?php if ($showSplash): ?>
     <?php include 'splash.php'; exit; ?>
+    
 <?php endif; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -300,6 +301,67 @@ $_SESSION['splash_shown'] = true;
 
         </div>
     </div>
+    <div class="modal fade" id="escrowFlowModal" tabindex="-1" aria-labelledby="escrowFlowLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content escrow-modal-content">
+            <div class="modal-header escrow-modal-header">
+                <h5 class="modal-title" id="escrowFlowLabel">
+                    <i class="bi bi-shield-lock"></i> Choose Payment Flow
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body escrow-modal-body">
+                <!-- Item Summary -->
+                <div class="item-summary">
+                    <div class="item-summary-name" id="modalItemName">Item Name</div>
+                    <div class="item-summary-price">R <span id="modalItemPrice">0.00</span></div>
+                </div>
+
+                <!-- Payment Flow Options -->
+                <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
+                    <i class="bi bi-info-circle"></i> Select how you'd like to complete this transaction
+                </p>
+
+                <!-- Flow Option 1: Pay First -->
+                <div class="flow-option" onclick="selectFlow('payment_first', this)">
+                    <span class="flow-icon">💳</span>
+                    <div class="flow-title">Pay Now</div>
+                    <p class="flow-description">
+                        Pay immediately → Meet & Verify → Transaction Complete
+                    </p>
+                </div>
+
+                <!-- Flow Option 2: QR First -->
+                <div class="flow-option" onclick="selectFlow('qr_first', this)">
+                    <span class="flow-icon">🔐</span>
+                    <div class="flow-title">QR Code First</div>
+                    <p class="flow-description">
+                        Meet & Verify → Pay → Transaction Complete
+                    </p>
+                </div>
+
+                <!-- Info Box -->
+                <div style="background: rgba(11, 60, 77, 0.1); border-left: 4px solid #0B3C4D; padding: 12px; border-radius: 6px; margin-top: 20px;">
+                    <p style="margin: 0; font-size: 12px; color: #0B3C4D;">
+                        <i class="bi bi-shield-check"></i> <strong>Both flows are secure.</strong> 
+                        Your funds are held safely in escrow until both parties confirm the transaction.
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer escrow-modal-footer">
+                <button type="button" class="btn-escrow-cancel" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" class="btn-escrow-confirm" id="confirmFlowBtn" disabled>
+                    <span class="escrow-spinner" id="flowSpinner">
+                        <span class="spinner-border spinner-border-sm"></span>
+                    </span>
+                    <span id="confirmBtnText">Proceed to Escrow</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
     <?php include 'includes/footer.php'; ?>
 
