@@ -124,10 +124,10 @@ $_SESSION['splash_shown'] = true;
 
     <div class="search-bar-wrapper py-3">
         <div class="container-fluid px-4">
-            <form action="search_handler.php" method="GET" class="mx-auto" style="max-width: 750px;">
+            <form action="auth/search.php" method="GET" class="mx-auto" style="max-width: 750px;">
                 <div class="input-group search-input-group">
                     <span class="input-group-text bg-white border-0 text-muted"><i class="bi bi-search"></i></span>
-                    <input type="text" class="form-control border-0" placeholder="What are you looking for today?" name="q" required style="box-shadow:none;">
+                    <input type="text" class="form-control border-0" placeholder="Search for products, categories or places..." name="q" required style="box-shadow:none;">
                     
                     <select class="form-select border-0 border-start" name="location" style="max-width: 160px; background-color: #fafafa; box-shadow:none;">
                         <option value="">All Areas</option>
