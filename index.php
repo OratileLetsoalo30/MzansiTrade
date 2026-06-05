@@ -1,11 +1,13 @@
 <?php
 session_start();
 
+// If user is not authenticated, instantly direct them to the login layout
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login.php");
+    header("Location: auth/login.php");
     exit();
 }
 
+// Splash screen logic for index page if needed (already handled at login)
 $showSplash = !isset($_SESSION['splash_shown']);
 $_SESSION['splash_shown'] = true;
 ?>
@@ -103,20 +105,21 @@ $_SESSION['splash_shown'] = true;
 </head>
 <body>
     <?php if ($showSplash): ?>
-<div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%); transition: opacity 0.6s ease-in-out;">
-    <img src="assets/img/logo.png" alt="MzansiTrade Logo" style="max-width: 250px; height: auto; margin-bottom: 30px;">
-    <div class="spinner-border" style="color: #ffc107; width: 3rem; height: 3rem;" role="status"></div>
-</div>
-<script>
-    window.addEventListener('load', function() {
-        const splash = document.getElementById('splash-screen');
-        setTimeout(() => {
-            splash.style.opacity = '0';
-            setTimeout(() => { splash.style.display = 'none'; }, 600);
-        }, 5000);
-    });
-</script>
-<?php endif; ?>
+    <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; background: linear-gradient(180deg, #0b3c4d 0%, #061920 100%); transition: opacity 0.6s ease-in-out;">
+        <img src="assets/img/logo.png" alt="MzansiTrade Logo" style="max-width: 250px; height: auto; margin-bottom: 30px;" onerror="this.style.display='none';">
+        <div class="spinner-border" style="color: #ffc107; width: 3rem; height: 3rem;" role="status"></div>
+    </div>
+    <script>
+        window.addEventListener('load', function() {
+            const splash = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splash.style.opacity = '0';
+                setTimeout(() => { splash.style.display = 'none'; }, 600);
+            }, 1500); // Shorter fadeout delay since they already saw it at login
+        });
+    </script>
+    <?php endif; ?>
+
     <?php include 'includes/header.php'; ?>
 
     <div class="search-bar-wrapper py-3">
@@ -181,7 +184,6 @@ $_SESSION['splash_shown'] = true;
         
         <h5 class="category-divider-title mb-4"><i class="bi bi-tag-fill me-2" style="color: #f28e2b;"></i>Trending in Shoes</h5>
         <div class="row justify-content-start g-4 mb-5">
-            
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
@@ -194,7 +196,7 @@ $_SESSION['splash_shown'] = true;
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R1 000</h5>
                         <div class="mt-auto row g-2">
                             <div class="col-12"><a href="checkout.php?item_id=1" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Black%20Steve%20Madden%20heels%20listed%20in%20Khayelitsha%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Black%20Steve%20Madden%20heels" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -212,17 +214,15 @@ $_SESSION['splash_shown'] = true;
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R2 400</h5>
                         <div class="mt-auto row g-2">
                             <div class="col-12"><a href="checkout.php?item_id=2" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Nike%20Retro%20J4%20Sneaker%20listed%20in%20Gugulethu%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Nike%20Retro%20J4" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <h5 class="category-divider-title mb-4"><i class="bi bi-laptop-fill me-2" style="color: #f28e2b;"></i>Trending in Devices</h5>
         <div class="row justify-content-start g-4 mb-5">
-            
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
@@ -235,7 +235,7 @@ $_SESSION['splash_shown'] = true;
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R700</h5>
                         <div class="mt-auto row g-2">
                             <div class="col-12"><a href="checkout.php?item_id=3" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20JBL%20Bluetooth%20Speaker%20listed%20in%20Nyanga%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -253,58 +253,15 @@ $_SESSION['splash_shown'] = true;
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R11 500</h5>
                         <div class="mt-auto row g-2">
                             <div class="col-12"><a href="checkout.php?item_id=5" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20iPhone%2017%20Pro%20Max%20256GB%20listed%20in%20Langa%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-
-        <h5 class="category-divider-title mb-4"><i class="bi bi-scissors me-2" style="color: #f28e2b;"></i>Trending in Hair Products</h5>
-        <div class="row justify-content-start g-4 mb-5">
-            
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card h-100 product-card border-0 shadow-sm">
-                    <div class="product-image-holder">
-                        <img src="assets/img/wig.png" alt="Lace Wig" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Wig'">
-                    </div>
-                    <div class="card-body d-flex flex-column p-3">
-                        <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
-                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">28" 13x4 Lace Front Wig</h6>
-                        <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Ottery</p>
-                        <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R3 200</h5>
-                        <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item_id=4" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%2028%22%2013x4%20Lace%20Front%20Wig%20listed%20in%20Ottery%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card h-100 product-card border-0 shadow-sm">
-                    <div class="product-image-holder">
-                        <img src="assets/img/closure.png" alt="Hair Closure" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Closure'">
-                    </div>
-                    <div class="card-body d-flex flex-column p-3">
-                        <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
-                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">3 x 24" Brazilian Hair Bundles (straight)+ Closure </h6>
-                        <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Delft</p>
-                        <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R1 800</h5>
-                        <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item_id=6" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%203x%2024%22%20Brazilian%20Hair%20Bundles%20%2B%20Closure%20listed%20in%20Delft%20on%20MzansiTrade." target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
     
     <?php include 'includes/footer.php'; ?>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

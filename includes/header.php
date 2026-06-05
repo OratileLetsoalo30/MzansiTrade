@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include_once 'db_config.php'; 
+include_once '../config/db.php'; 
 
 // ==========================================
 // THE FIX: Define your base project path here
@@ -56,7 +56,7 @@ $base_url = '/mzansitrade';
                     <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-0 rounded-0" aria-labelledby="userDropdown" style="width: 240px; border-top: 3px solid #f28e2b !important;">
     
     <li>
-        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/pages/profile.php" style="color: #0b3c4d; font-size: 14px;">
+        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>../pages/profile.php" style="color: #0b3c4d; font-size: 14px;">
             <i class="bi bi-person-gear fs-5" style="color: #0b3c4d;"></i>Profile Settings
         </a>
     </li> 
@@ -76,7 +76,7 @@ $base_url = '/mzansitrade';
     <li><hr class="dropdown-divider my-0" style="border-top: 1px solid #e0e0e0; opacity: 1;"></li>
 
     <li>
-        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>/seller/sell_item.php" style="color: #0b3c4d; font-size: 14px;">
+        <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $base_url; ?>mzansitrade/seller/sell_item.php" style="color: #0b3c4d; font-size: 14px;">
              <i class="bi bi-plus-circle fs-5" style="color: #f28e2b;"></i>Sell Item
         </a>
     </li>

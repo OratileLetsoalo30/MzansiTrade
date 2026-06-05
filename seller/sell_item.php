@@ -1,6 +1,6 @@
 <?php
-include 'db_config.php';
-include 'auth.php'; 
+include '../config/db.php';
+include '../auth_check.php'; 
 
 if (isset($_POST['post_item_btn'])) {
     if (!$is_verified) {
