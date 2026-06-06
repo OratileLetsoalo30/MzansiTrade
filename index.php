@@ -23,6 +23,12 @@ $_SESSION['splash_shown'] = true;
     <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 
     <style>
+        /* Smooth scrolling configuration */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 20px; /* Prevents header from clipping sections */
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #f8f9fa;
@@ -115,7 +121,7 @@ $_SESSION['splash_shown'] = true;
             setTimeout(() => {
                 splash.style.opacity = '0';
                 setTimeout(() => { splash.style.display = 'none'; }, 600);
-            }, 1500); // Shorter fadeout delay since they already saw it at login
+            }, 1500);
         });
     </script>
     <?php endif; ?>
@@ -124,7 +130,7 @@ $_SESSION['splash_shown'] = true;
 
     <div class="search-bar-wrapper py-3">
         <div class="container-fluid px-4">
-            <form action="auth/search.php" method="GET" class="mx-auto" style="max-width: 750px;">
+            <form action="seller/search.php" method="GET" class="mx-auto" style="max-width: 750px;">
                 <div class="input-group search-input-group">
                     <span class="input-group-text bg-white border-0 text-muted"><i class="bi bi-search"></i></span>
                     <input type="text" class="form-control border-0" placeholder="Search for products, categories or places..." name="q" required style="box-shadow:none;">
@@ -182,9 +188,9 @@ $_SESSION['splash_shown'] = true;
     <div class="main-grid-container container py-5">
         <h4 class="fw-bold mb-4" style="color: #0b3c4d; font-family: 'Syne', sans-serif;">Trending Listings in Cape Town Township Areas</h4>
         
-        <h5 class="category-divider-title mb-4"><i class="bi bi-tag-fill me-2" style="color: #f28e2b;"></i>Trending in Shoes</h5>
+        <h5 class="category-divider-title mb-4" id="shoes-section"><i class="bi bi-tag-fill me-2" style="color: #f28e2b;"></i>Trending in Shoes</h5>
         <div class="row justify-content-start g-4 mb-5">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
                         <img src="assets/img/heel.png" alt="Black Heels" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Heels'">
@@ -195,14 +201,14 @@ $_SESSION['splash_shown'] = true;
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Khayelitsha</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R1 000</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item_id=1" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="escrow/process_escrow.php?item_id=1" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
                             <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Black%20Steve%20Madden%20heels" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
                         <img src="assets/img/sneaker.png" alt="Sneaker" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Sneaker'">
@@ -213,17 +219,92 @@ $_SESSION['splash_shown'] = true;
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Gugulethu</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R2 400</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item_id=2" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="escrow/process_escrow.php?item_id=2" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
                             <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Nike%20Retro%20J4" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <div class="product-image-holder">
+                        <img src="assets/img/clog.png" class="product-img" alt="Suede clogs" onerror="this.src='https://via.placeholder.com/300x300?text=Puma+Sneakers'">
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">Suede Clogs</h6>
+                        <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Claremont</p>
+                        <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R350</h5>
+                        <div class="mt-auto row g-2">
+                            <div class="col-12"><a href="escrow/process_escrow.php?item_id=20" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Puma%20RS-X%20Sneakers" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <h5 class="category-divider-title mb-4"><i class="bi bi-laptop-fill me-2" style="color: #f28e2b;"></i>Trending in Devices</h5>
+        <h5 class="category-divider-title mb-4" id="hair-section"><i class="bi bi-scissors me-2" style="color: #f28e2b;"></i>Trending in Hair</h5>
         <div class="row justify-content-start g-4 mb-5">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <div class="product-image-holder">
+                        <img src="assets/img/wig.png" alt="Wig Product" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Wig+Product'">
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;"> 30" Water Wave Wig</h6>
+                        <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Wynberg</p>
+                        <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R3 000</h5>
+                        <div class="mt-auto row g-2">
+                            <div class="col-12"><a href="escrow/process_escrow.php?item_id=10" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Premium%20Straight%20Wig" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <div class="product-image-holder">
+                        <img src="assets/img/closure.png" alt="Bundles" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Hair+Bundles'">
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;"> 3 Brazilian Straight Bundles + Closure</h6>
+                        <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Khayelitsha</p>
+                        <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R2 000</h5>
+                        <div class="mt-auto row g-2">
+                            <div class="col-12"><a href="escrow/process_escrow.php?item_id=11" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Brazilian%20Deep%20Wave%20Bundles" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <div class="product-image-holder">
+                        <img src="assets/img/brown wig.png" class="product-img" alt="Brown Wig" onerror="this.src='https://via.placeholder.com/300x300?text=Lace+Frontal'">
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">13x4 Chocolate Layered Wig</h6>
+                        <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Ottery</p>
+                        <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R3 500</h5>
+                        <div class="mt-auto row g-2">
+                            <div class="col-12"><a href="escrow/process_escrow.php?item_id=21" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%2013x4%20HD%20Lace%20Frontal" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="category-divider-title mb-4" id="devices-section"><i class="bi bi-laptop-fill me-2" style="color: #f28e2b;"></i>Trending in Devices</h5>
+        <div class="row justify-content-start g-4 mb-5">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
                         <img src="assets/img/speaker.png" alt="JBL Speaker" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Speaker'">
@@ -234,26 +315,44 @@ $_SESSION['splash_shown'] = true;
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Nyanga</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R700</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item_id=3" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="escrow/process_escrow.php?item_id=3" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20JBL%20Bluetooth%20Speaker" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 product-card border-0 shadow-sm">
                     <div class="product-image-holder">
                         <img src="assets/img/iphone.png" alt="iPhone" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=iPhone'">
                     </div>
                     <div class="card-body d-flex flex-column p-3">
                         <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
-                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">iPhone 17 Pro Max 256GB</h6>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">iPhone 17 Pro Max 256GB (Used)</h6>
                         <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Langa</p>
                         <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R11 500</h5>
                         <div class="mt-auto row g-2">
-                            <div class="col-12"><a href="checkout.php?item_id=5" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
-                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                            <div class="col-12"><a href="escrow/process_escrow.php?item_id=5" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20iPhone%2017%20Pro%20Max%20256GB" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <div class="product-image-holder">
+                        <img src="assets/img/macbook.png" class="product-img" alt="MacBook" onerror="this.src='https://via.placeholder.com/300x300?text=MacBook'">
+                    </div>
+                    <div class="card-body d-flex flex-column p-3">
+                        <span class="badge-verified mb-1"><i class="bi bi-patch-check-fill"></i> Verified Seller</span>
+                        <h6 class="product-title text-truncate mb-1" style="font-weight: 600; color: #1a2a30;">MacBook Air M4 chip</h6>
+                        <p class="product-location mb-2"><i class="bi bi-geo-alt"></i> Rondebosch</p>
+                        <h5 class="product-price mb-3" style="color: #0b3c4d; font-weight: 700;">R15 000</h5>
+                        <div class="mt-auto row g-2">
+                            <div class="col-12"><a href="escrow/process_escrow.php?item_id=22" class="btn escrow-btn w-100 py-2"><i class="bi bi-shield-lock-fill"></i> Buy with Escrow</a></div>
+                            <div class="col-12"><a href="https://wa.me/27600000000?text=Hi!%20I'm%20interested%20in%20your%20Samsung%20Galaxy%20S23%20Ultra" target="_blank" class="btn contact-btn w-100 py-2"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a></div>
                         </div>
                     </div>
                 </div>
@@ -263,5 +362,26 @@ $_SESSION['splash_shown'] = true;
     
     <?php include 'includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetLoc = urlParams.get('location');
+            
+            if (targetLoc && targetLoc.trim() !== "") {
+                const productCards = document.querySelectorAll('.product-card');
+                productCards.forEach(card => {
+                    const locElement = card.querySelector('.product-location');
+                    if (locElement) {
+                        const locText = locElement.textContent.toLowerCase();
+                        if (!locText.includes(targetLoc.toLowerCase())) {
+                            // Hide the parent column wrapper seamlessly
+                            card.closest('.col-12').style.display = 'none';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

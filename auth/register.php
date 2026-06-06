@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
     </style>
 </head>
 <body class="mzansi-login-body">
-    <?php if (file_exists('../includes/header.php')) { include '../includes/header.php'; } ?>
+
 
     <div class="container mt-5 pt-4">
         <div class="row justify-content-center">

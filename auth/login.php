@@ -81,7 +81,6 @@ if (isset($_POST['login_btn'])) {
     </script>
     <?php endif; ?>
 
-    <?php if (file_exists('../includes/header.php')) { include '../includes/header.php'; } ?> 
     
     <div class="container mt-5 pt-5">
         <div class="row justify-content-center">

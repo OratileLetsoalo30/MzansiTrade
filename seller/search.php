@@ -1,71 +1,87 @@
 <?php
-// search.php
-if (isset($_GET['q'])) {
-    $query = strtolower(trim($_GET['q']));
+// ../seller/search.php
 
-$location = '';
+if (isset($_GET['q']) || isset($_GET['location'])) {
+    $query = isset($_GET['q']) ? strtolower(trim($_GET['q'])) : '';
+    $location = isset($_GET['location']) ? strtolower(trim($_GET['location'])) : '';
 
-if (isset($_GET['location']) && !empty($_GET['location'])) {
-    $location = strtolower(trim($_GET['location']));
-}
+    // If this file is inside a folder (like auth/ or seller/), use "../index.php"
+    // If this file is in the main folder with index.php, change this to "index.php"
+    $redirectUrl = "../index.php"; 
 
-if (!empty($location)) {
-    header("Location: index.php?location=" . urlencode($location));
-    exit;
-}
-
-    // Define category mappings
-    $map = [
-        // Hair products
-        'hair' => 'category.php?cat=hair',
-        'wig' => 'category.php?cat=wigs',
-        'weave' => 'category.php?cat=weaves',
-        'bundle' => 'category.php?cat=bundles',
-        'closure' => 'category.php?cat=closures',
-        'buss down' => 'category.php?cat=bussdown',
-        '13x4' => 'category.php?cat=13x4',
-        'straight' => 'category.php?style=straight',
-        'curls' => 'category.php?style=curls',
-        'water' => 'category.php?style=water_wave',
-        'jerry' => 'category.php?style=jerry_curl',
-        
-        // Shoes
-        'sneakers' => 'category.php?cat=sneakers',
-        'nike' => 'brand.php?brand=nike',
-        'heels' => 'category.php?cat=heels',
-        'shoes' => 'category.php?cat=shoes',
-        'steve madden' => 'brand.php?brand=steve_madden',
-        'adidas' => 'brand.php?brand=adidas',
-        
-        // Devices
-        'devices' => 'category.php?cat=devices',
-        'iphone' => 'brand.php?brand=iphone',
-        'pro max' => 'search.php?q=pro+max', // Generic search
-        'jbl' => 'brand.php?brand=jbl',
-        
-        // Locations
-        'khayelitsha' => 'index.php?location=khayelitsha',
-        'ottery' => 'index.php?location=ottery',
-        'blouberg' => 'index.php?location=blouberg',
-        'greenpoint' => 'index.php?location=greenpoint',
-        'nyanga' => 'index.php?location=nyanga',
-        'wynberg' => 'index.php?location=wynberg',
-        'rondebosch' => 'index.php?location=rondebosch',
-        'claremont' => 'index.php?location=claremont',
-        'delft' => 'index.php?location=delft',
-        'gugulethu' => 'index.php?location=gugulethu'
+    // ==========================================
+    // 1. LOCATION LOGIC
+    // ==========================================
+    $locationsList = [
+        'khayelitsha', 'ottery', 'blouberg', 'greenpoint', 'nyanga', 
+        'wynberg', 'rondebosch', 'claremont', 'delft', 'gugulethu'
     ];
 
-    // Check if the query matches a key
-    foreach ($map as $keyword => $url) {
-        if (strpos($query, $keyword) !== false) {
-            header("Location: " . $url);
-            exit;
+    // If location wasn't selected from the dropdown, check if they typed it in the search bar
+    if (empty($location)) {
+        foreach ($locationsList as $loc) {
+            if (strpos($query, $loc) !== false) {
+                $location = $loc;
+                break;
+            }
         }
     }
 
-    // Default fallback: If no keyword matched, go to general results page
-    header("Location: search_results.php?q=" . urlencode($query));
-    exit;
+    // Append location parameter to the URL if one was found
+    if (!empty($location)) {
+        // Starts with ? for the first URL parameter
+        $redirectUrl .= "?location=" . urlencode($location); 
+    }
+
+    // ==========================================
+    // 2. CATEGORY & SECTION MAPPING (SMOOTH SCROLL)
+    // ==========================================
+    $anchor = '';
+
+    // Hair products mapping
+    $hair_keywords = ['hair', 'wig', 'weave', 'bundle', 'closure', 'buss down', '13x4', 'straight', 'curls', 'water', 'jerry', 'body wave', 'deep wave', 'loose wave', 'kinky', 'yaki', 'hd lace', 'chocolate layered'];
+    // Shoes mapping
+    $shoe_keywords = ['sneakers', 'nike', 'heels', 'shoes', 'steve madden', 'adidas', 'puma', 'reebok', 'clogs'];
+    // Devices mapping
+    $device_keywords = ['devices', 'iphone', 'pro max', 'jbl', 'samsung', 'galaxy', 'macbook', 'laptop', 'tablet', 'ipad', 'airpods'];
+
+    // Check which category the query belongs to
+    foreach ($hair_keywords as $kw) {
+        if (strpos($query, $kw) !== false) {
+            $anchor = '#hair-section';
+            break;
+        }
+    }
+    
+    if (empty($anchor)) {
+        foreach ($shoe_keywords as $kw) {
+            if (strpos($query, $kw) !== false) {
+                $anchor = '#shoes-section';
+                break;
+            }
+        }
+    }
+    
+    if (empty($anchor)) {
+        foreach ($device_keywords as $kw) {
+            if (strpos($query, $kw) !== false) {
+                $anchor = '#devices-section';
+                break;
+            }
+        }
+    }
+
+    // Append the anchor ID so the page smoothly glides to the correct section
+    $redirectUrl .= $anchor;
+
+    // ==========================================
+    // 3. EXECUTE REDIRECT
+    // ==========================================
+    header("Location: " . $redirectUrl);
+    exit();
+} else {
+    // Fallback if someone opens search.php with no search typed
+    header("Location: ../index.php");
+    exit();
 }
 ?>

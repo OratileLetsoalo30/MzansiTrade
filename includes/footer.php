@@ -13,10 +13,10 @@
         </div>
         
         <div class="footer-links mb-4">
-            <a href="index.php" class="text-white-50 text-decoration-none mx-2 hover-white">Home</a>
-            <a href="about.php" class="text-white-50 text-decoration-none mx-2 hover-white">How it Works</a>
-            <a href="terms.php" class="text-white-50 text-decoration-none mx-2 hover-white">Escrow Safety</a>
-            <a href="contact.php" class="text-white-50 text-decoration-none mx-2 hover-white">Support</a>
+            <a href="/mzansitrade/index.php" class="text-white-50 text-decoration-none mx-2 hover-white">Home</a>
+            <a href="/mzansitrade/pages/how-it-works.php" class="text-white-50 text-decoration-none mx-2 hover-white">How it Works</a>
+            <a href="/mzansitrade/escrow/escrow_safety.php" class="text-white-50 text-decoration-none mx-2 hover-white">Escrow Safety</a>
+            <a href="/mzansitrade/pages/support.php" class="text-white-50 text-decoration-none mx-2 hover-white">Support</a>
         </div>
         
         <p class="mb-0 text-white-50" style="font-size: 13px; letter-spacing: 0.3px;">
