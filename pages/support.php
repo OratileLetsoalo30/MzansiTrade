@@ -40,8 +40,8 @@ include dirname(__DIR__) . '/includes/header.php';
                         </div>
                     </div>
 
-                    <div class="col-md-6 p-5 text-white" style="background-color: #163f4c;">
-                        <h4 class="fw-bold mb-4" style="color: #f4a41c;">Courier Operations FAQ</h4>
+                    <div class="col-md-6 p-5 text-white" style="background-color: #bb8521;">
+                        <h4 class="fw-bold mb-4" style="color: #f4a825;">Courier Operations FAQ</h4>
                         
                         <div class="mb-3">
                             <h6 class="fw-bold mb-1" style="color: #f4a41c;">Pudo Shipments</h6>

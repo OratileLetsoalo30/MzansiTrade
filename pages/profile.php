@@ -8,6 +8,9 @@ $user = mysqli_fetch_assoc($user_res);
 $is_verified = $user['is_verified'] ?? 0;
 
 $my_items = mysqli_query($conn, "SELECT * FROM products WHERE seller_id = '$user_id'");
+
+include dirname(__DIR__) . '/includes/header.php';
+
 ?>
 
 <!DOCTYPE html>

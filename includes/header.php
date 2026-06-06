@@ -14,13 +14,13 @@ if (in_array($current_dir, ['pages', 'seller', 'auth', 'includes', 'config'])) {
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="<?php echo $path_prefix; ?>assets/css/style.css">
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm py-3 msanzi-custom-nav" style="background-color: #0b3c4d;">
     <div class="container-fluid position-relative msanzi-nav-container" style="width: 100%;">
         
         <a class="navbar-brand d-flex align-items-center position-absolute msanzi-logo-left" href="<?php echo $path_prefix; ?>index.php" style="left: 15px; top: 50%; transform: translateY(-50%); margin: 0; padding: 0; z-index: 10;">
-            <img src="assets/img/logo.jpeg" alt="Mzansi Trade Logo" class="your-logo-class" style="height: 50px; width: auto; mix-blend-mode: multiply;">
+            <img src="<?php echo $path_prefix; ?>assets/img/logo.jpeg" alt="Mzansi Trade Logo" class="your-logo-class" style="height: 50px; width: auto; mix-blend-mode: multiply;">
         </a>
 
         <div class="brand-title-center-override position-absolute" style="left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; white-space: nowrap; z-index: 5;">
@@ -79,6 +79,12 @@ if (in_array($current_dir, ['pages', 'seller', 'auth', 'includes', 'config'])) {
                             <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $path_prefix; ?>seller/sell_item.php" style="color: #0b3c4d; font-size: 14px;">
                                  <i class="bi bi-plus-circle fs-5" style="color: #f28e2b;"></i>Sell Item
                             </a>
+                        </li>
+
+                        <li>
+                             <a class="dropdown-item py-2.5 d-flex align-items-center gap-3" href="<?php echo $path_prefix; ?>pages/history.php" style="color: #0b3c4d; font-size: 14px;">
+                                 <i class="bi bi-clock-history fs-5" style="color: #f28e2b;"></i> My History
+                             </a>
                         </li>
 
                         <li>
